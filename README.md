@@ -1,6 +1,6 @@
 # Cafe Management - Advanced Web Application Project
 
-## Project Setup
+### Project Setup
 
 ### Backend
 
