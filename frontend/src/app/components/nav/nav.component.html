@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand">Home</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mx-auto mb-2 mb-md-0" *ngIf="authenticated">
+        <li class="nav-item">
+          <a routerLink="/template1" class="nav-link">template1</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/template2" class="nav-link">template2</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/template3" class="nav-link">template3</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/template4" class="nav-link">template4</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/template5" class="nav-link">template5</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-md-0" *ngIf="authenticated">
+        <li class="nav-item">
+          <a routerLink="/login" (click)="logout()" class="nav-link">Logout</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="!authenticated">
+        <li class="nav-item">
+          <a routerLink="/login" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/register" class="nav-link">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
