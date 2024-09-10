@@ -4,7 +4,7 @@
 
 ### Backend
 
-npm install --save-dev express bcryptjs cookie-parser cors jsonwebtoken mongoose nodemon
+npm install --save-dev express bcryptjs cookie-parser cors jsonwebtoken mongoose nodemon --save-dev
 
 ### Frontend
 
