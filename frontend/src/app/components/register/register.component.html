@@ -1,28 +1,69 @@
-<form [formGroup]="form" (submit)="submit()">
-  <h1 class="h3 mb-3 fw-normal">Please register</h1>
-
-  <input
-    formControlName="name"
-    class="form-control"
-    placeholder="Name"
-    required
-  />
-
-  <input
-    formControlName="email"
-    type="email"
-    class="form-control"
-    placeholder="Email"
-    required
-  />
-
-  <input
-    formControlName="password"
-    type="password"
-    class="form-control"
-    placeholder="Password"
-    required
-  />
-
-  <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="register.component.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="ext-box">
+      <div class="wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 side-image"></div>
+            <div class="col-md-6 right">
+              <div>
+                <div class="input-box">
+                  <header class="header">Create account</header>
+                  <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="input-field">
+                      <input
+                        type="text"
+                        class="input"
+                        id="register-name"
+                        formControlName="name"
+                        required
+                      />
+                      <label for="name">Name</label>
+                    </div>
+                    <div class="input-field">
+                      <input
+                        formControlName="email"
+                        type="email"
+                        class="input"
+                        id="register-email"
+                        required
+                        autocomplete="off"
+                      />
+                      <label for="email">Email</label>
+                    </div>
+                    <div class="input-field">
+                      <input
+                        formControlName="password"
+                        type="register-password"
+                        class="input"
+                        id="password"
+                        required
+                      />
+                      <label for="password">Password</label>
+                    </div>
+                    <div class="input-field">
+                      <button type="submit" class="submit">Sign Up</button>
+                    </div>
+                    <div class="signin">
+                      <span
+                        >Already have an account?
+                        <a href="/login">Log in here</a></span
+                      >
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

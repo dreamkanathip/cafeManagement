@@ -1,4 +1,9 @@
-<app-nav></app-nav>
-<main class="form-signin">
-  <router-outlet></router-outlet>
+<main>
+  <!-- ใช้ ngSkipHydration เฉพาะเมื่อจำเป็น -->
+  <app-register *ngIf="isRegisterPage" ngSkipHydration></app-register>
+  <app-login *ngIf="isRegisterPage" ngSkipHydration></app-login>
+
+  <!-- แสดง <router-outlet> เมื่อ isRegisterPage เป็นเท็จ -->
+  <app-nav *ngIf="!isRegisterPage"></app-nav>
+  <router-outlet *ngIf="!isRegisterPage"></router-outlet>
 </main>
