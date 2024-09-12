@@ -17,6 +17,9 @@ import {
   provideHttpClient,
   withFetch,
 } from '@angular/common/http';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { MenuComponent } from './components/inventory/menu/menu.component';
+import { IngerdientComponent } from './components/inventory/ingerdient/ingerdient.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import {
     NavComponent,
     RegisterComponent,
     LoginComponent,
+    InventoryComponent,
+    MenuComponent,
+    IngerdientComponent,
   ],
   imports: [
     BrowserModule,
