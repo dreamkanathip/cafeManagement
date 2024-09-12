@@ -9,6 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'frontend';
   isRegisterPage = false;
+  isLoginPage = false;
 
   constructor(private router: Router) {}
 
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isRegisterPage = this.router.url === '/register';
+        this.isLoginPage = this.router.url === '/login';
       }
     });
   }
