@@ -5,7 +5,7 @@ const User = require("../models/user");
 // Registration
 const register = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { firstName, lastName, email, password, gender } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -13,11 +13,18 @@ const register = async (req, res) => {
     if (existingUser)
       return res.status(400).send({ message: "Email already registered" });
 
-    const user = new User({ name, email, password: hashedPassword });
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+      gender,
+    });
     const result = await user.save();
 
     res.status(201).json({ message: "Registration successful", user: result });
   } catch (err) {
+    console.error("Registration error:", err); // เพิ่มการล็อก error เพื่อการดีบัก
     res.status(500).send({ message: "Internal server error" });
   }
 };
@@ -38,14 +45,20 @@ const login = async (req, res) => {
 
     res.status(200).send({ message: "Login successful" });
   } catch (err) {
+    console.error("Login error:", err); // เพิ่มการล็อก error เพื่อการดีบัก
     res.status(500).send({ message: "Internal server error" });
   }
 };
 
 // Get User Info
 const getUser = (req, res) => {
-  const { password, ...userData } = req.user.toJSON();
-  res.send(userData);
+  try {
+    const { password, ...userData } = req.user.toJSON(); // กำจัดรหัสผ่านจากข้อมูลที่ส่ง
+    res.send(userData);
+  } catch (err) {
+    console.error("Error fetching user info:", err); // เพิ่มการล็อก error เพื่อการดีบัก
+    res.status(500).send({ message: "Internal server error" });
+  }
 };
 
 // Logout

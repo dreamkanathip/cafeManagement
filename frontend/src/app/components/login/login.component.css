@@ -30,7 +30,8 @@ body::before {
   min-height: 100vh;
 }
 .header {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 .ext-box {
   display: flex;
