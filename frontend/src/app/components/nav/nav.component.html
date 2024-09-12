@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
   <div class="container-fluid">
     <a routerLink="/" class="navbar-brand">Home</a>
     <div class="collapse navbar-collapse">
@@ -24,7 +24,7 @@
           <a routerLink="/login" (click)="logout()" class="nav-link">Logout</a>
         </li>
       </ul>
-      <!-- <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="!authenticated">
+      ? <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="!authenticated">
         <li class="nav-item">
           <a routerLink="/login" class="nav-link">Login</a>
         </li>
@@ -32,6 +32,69 @@
           <a routerLink="/register" class="nav-link">Register</a>
         </li> 
       </ul> -->
-    </div>
+<!-- </div>
   </div>
-</nav>
+</nav> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Navbar</title>
+    <link rel="stylesheet" href="nav.component.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="">Logo</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="home">template1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="#">template2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="#">template3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-2" href="#">template4</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a routerLink="/login" (click)="logout()" class="logout-button"
+          >Logout</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+  </body>
+</html>

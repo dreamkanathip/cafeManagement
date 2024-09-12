@@ -45,7 +45,10 @@ export class LoginComponent implements OnInit {
           withCredentials: true,
         })
         .subscribe(
-          (res) => this.router.navigate(['/home']),
+          (res) => {
+            Swal.fire('Success', 'Login successful!', 'success');
+            this.router.navigate(['/home']);
+          },
           (err) => {
             Swal.fire('Error', err.error.message, 'error');
           }
