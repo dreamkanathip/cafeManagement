@@ -3,6 +3,7 @@
   color: #009970;
   font-size: 24px;
   transition: 0.3s color;
+  margin-bottom: 1.75px;
 }
 .logout-button {
   background-color: #009970;
@@ -18,7 +19,10 @@
 }
 .navbar {
   background-color: #fff;
-  height: 55px;
+  height: 80px;
+  margin: 20px;
+  border-radius: 16px;
+  padding: 0.5rem;
 }
 .navbar-toggler {
   border: none;
@@ -60,4 +64,7 @@
     width: 100%;
     visibility: visible;
   }
+}
+.nav-item {
+  font-size: 18px;
 }
