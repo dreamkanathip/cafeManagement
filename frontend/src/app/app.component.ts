@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   isRegisterPage = false;
   isLoginPage = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     // Subscribe to router events to determine if the current route is the register page
@@ -21,5 +22,6 @@ export class AppComponent implements OnInit {
         this.isLoginPage = this.router.url === '/login';
       }
     });
+    this.authService.checkAuthentication();
   }
 }
