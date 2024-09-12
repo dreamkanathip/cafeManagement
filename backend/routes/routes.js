@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 const router = Router();
 
+// Registration Route
 router.post("/register", async (req, res) => {
   try {
     let email = req.body.email;
@@ -29,15 +30,6 @@ router.post("/register", async (req, res) => {
 
     const result = await user.save();
 
-    // JWT Token
-    const { _id } = result;
-    const token = jwt.sign({ _id: _id }, "secret", { expiresIn: "1d" });
-
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-    });
-
     return res.status(201).json({
       message: "Registration successful",
       user: result,
@@ -49,6 +41,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Login Route
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -84,6 +77,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Get User Route
 router.get("/user", async (req, res) => {
   try {
     const cookie = req.cookies["jwt"];
@@ -117,6 +111,7 @@ router.get("/user", async (req, res) => {
   }
 });
 
+// Logout Route
 router.post("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
   return res.send({

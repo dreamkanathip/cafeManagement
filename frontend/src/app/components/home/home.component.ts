@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
       .get('http://localhost:5000/api/user', { withCredentials: true })
       .subscribe(
         (res: any) => {
-          this.message = `Hi ${res.name}`;
+          this.message = `WELCOME ${res.name}!`;
           Emitters.authEmitter.emit(true);
         },
         (err) => {
