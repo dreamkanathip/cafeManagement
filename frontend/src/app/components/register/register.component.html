@@ -19,7 +19,6 @@
                     />
                     <label for="register-firstname">First Name</label>
                   </div>
-
                   <div class="input-field">
                     <input
                       type="text"
@@ -48,7 +47,6 @@
                       </span>
                     </div>
                   </div>
-
                   <div class="input-field">
                     <input
                       formControlName="password"
@@ -58,8 +56,17 @@
                       required
                     />
                     <label for="password">Password</label>
+                    <div
+                      *ngIf="
+                        form.get('password')?.hasError('minlength') &&
+                        form.get('password')?.touched
+                      "
+                    >
+                      <span class="error">
+                        Password must be at least 6 characters long.
+                      </span>
+                    </div>
                   </div>
-
                   <div class="gender-container">
                     <div class="gender-options">
                       <div class="gender-option">
