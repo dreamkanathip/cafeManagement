@@ -10,6 +10,9 @@ npm install --save-dev express bcryptjs cookie-parser cors jsonwebtoken mongoose
 
 npm install sweetalert2 popper.js bootstrap@4.6
 
+### คำสั่งสร้าง Component & Service
+ng g c components/name's component
+ng g s services/name's service
 
 # Group Members
   ### 1.B6401894 - สิรภพ สิริอาภากุล
