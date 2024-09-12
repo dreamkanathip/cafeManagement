@@ -3,13 +3,16 @@
 ### Project Setup
 
 ### Backend
-
 npm install --save-dev express bcryptjs cookie-parser cors jsonwebtoken mongoose nodemon --save-dev
 
 ### Frontend
-
 npm install sweetalert2 popper.js bootstrap@4.6
 
+### คำสั่งสร้าง Component 
+ng g c components/name's component
+
+### คำสั่งสร้าง Service
+ng g s services/name's service
 
 # Group Members
   ### 1.B6401894 - สิรภพ สิริอาภากุล
