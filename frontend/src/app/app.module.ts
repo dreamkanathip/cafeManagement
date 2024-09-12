@@ -11,12 +11,14 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderComponent } from './components/order/order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   HttpClientModule,
   provideHttpClient,
   withFetch,
 } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import {
     NavComponent,
     RegisterComponent,
     LoginComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
