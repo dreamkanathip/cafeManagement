@@ -8,7 +8,7 @@ import { Emitters } from '../../emitters/emitter'; // Adjust the path as necessa
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  message = '';
+  message!: string;
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,28 @@ export class HomeComponent implements OnInit {
       .get('http://localhost:5000/api/user', { withCredentials: true })
       .subscribe(
         (res: any) => {
-          this.message = `WELCOME ${res.name}!`;
+          console.log('Gender:', res.gender);
+          console.log('First Name:', res.firstName); // ตรวจสอบค่าชื่อ
+          console.log('Last Name:', res.lastName); // ตรวจสอบค่านามสกุล
+
+          let title = '';
+          if (res.gender === 'male') {
+            title = 'Mr';
+          } else if (res.gender === 'female') {
+            title = 'Ms';
+          }
+
+          // ตรวจสอบว่ามี lastName และ lastName เป็น string ก่อนดึงตัวอักษรตัวแรก
+          const firstLetterOfLastName =
+            res.lastName && typeof res.lastName === 'string'
+              ? res.lastName.charAt(0)
+              : '';
+
+          // สร้างข้อความต้อนรับ
+          this.message = `${title} ${firstLetterOfLastName}. ${res.firstName}!`;
+
+          console.log('Message:', this.message); // ตรวจสอบข้อความที่ถูกตั้งค่า
+
           Emitters.authEmitter.emit(true);
         },
         (err) => {

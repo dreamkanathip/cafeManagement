@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderComponent } from './components/order/order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   HttpClientModule,
@@ -20,6 +21,7 @@ import {
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { MenuComponent } from './components/inventory/menu/menu.component';
 import { IngerdientComponent } from './components/inventory/ingerdient/ingerdient.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { IngerdientComponent } from './components/inventory/ingerdient/ingerdien
     InventoryComponent,
     MenuComponent,
     IngerdientComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
