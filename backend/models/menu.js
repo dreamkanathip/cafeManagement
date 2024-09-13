@@ -1,4 +1,4 @@
-import categorySchema from './category.js'
+const categorySchema = require('./category.js')
 
 const mongoose = require("mongoose");
 
@@ -8,11 +8,12 @@ const menuSchema = new mongoose.Schema({
     required: true,
   },
   price: {
-    type: number,
+    type: Number,
     required: true,
   },
   category: {
-    type: categorySchema,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
     required: true
   }
 });
