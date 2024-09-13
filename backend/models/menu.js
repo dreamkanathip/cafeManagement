@@ -1,4 +1,7 @@
+import categorySchema from './category.js'
+
 const mongoose = require("mongoose");
+
 const menuSchema = new mongoose.Schema({
   itemName: {
     type: String,
@@ -7,6 +10,10 @@ const menuSchema = new mongoose.Schema({
   price: {
     type: number,
     required: true,
+  },
+  category: {
+    type: categorySchema,
+    required: true
   }
 });
 
