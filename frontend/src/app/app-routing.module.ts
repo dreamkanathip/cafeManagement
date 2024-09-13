@@ -15,10 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'inventory', component: InventoryComponent},
-  { path: 'manage-menu', component: MenuComponent },
-  { path: 'manage-ingredient', component: IngerdientComponent},
- 
-
+  { path: 'inventory/manage-menu', component: MenuComponent },
+  { path: 'inventory/manage-ingredient', component: IngerdientComponent},
   { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'order', component: OrderComponent},
 

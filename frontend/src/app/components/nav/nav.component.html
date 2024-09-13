@@ -75,8 +75,27 @@
               <li class="nav-item">
                 <a routerLink="/payment" class="nav-link mx-lg-2">Payment</a>
               </li>
-              <li class="nav-item">
-                <a routerLink="/inventory" class="nav-link mx-lg-2">Inventory</a>
+              <li class="nav-item dropdown">
+                <a routerLink="/inventory" class="nav-link mx-lg-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >
+                  Inventory
+                </a>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="inventoryDropdown"
+                >
+                  <li>
+                    <a routerLink="/inventory/manage-menu" class="dropdown-item"
+                      >Manage Menu</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/inventory/manage-ingredient"
+                      class="dropdown-item"
+                      >Manage Ingredient</a
+                    >
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>

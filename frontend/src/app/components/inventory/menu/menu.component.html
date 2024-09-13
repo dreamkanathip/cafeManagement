@@ -4,8 +4,38 @@
 <div class="main-video">
     <div class="container">
         <div class="menu-container">
-            <div>
-                <h2>Menu</h2>
+            <div class="menu-list">
+              <h2 class="menu-text">Menu</h2>
+              <div class="table-responsive-md">
+                  <table class="table table-striped table-inverse">
+                      <thead class="thead-inverse">
+                          <tr>
+                              <th></th>
+                              <th>ID.</th>
+                              <th>Name</th>
+                              <th></th>
+                              <th>
+                                <button class="add-menu-btn"><i class="fas fa-plus"></i>Add menu</button>
+                              </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of getAllMenu(); index as i">
+                              <td>A</td>
+                              <td scope="row">{{item.p_id}}</td>
+                              <td>{{item.p_name}}</td>
+                              <td>
+                                <button>
+                                  edit
+                                </button>
+                              </td>
+                              <td>
+                                <button>delete</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
             </div>
         </div>
     </div>
