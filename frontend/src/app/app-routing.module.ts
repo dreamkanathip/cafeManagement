@@ -8,6 +8,8 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { IngerdientComponent } from './components/inventory/ingerdient/ingerdient.component';
 import { MenuComponent } from './components/inventory/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
+import { EditMenuComponent } from './components/inventory/menu/edit/edit.component';
+import { AddMenuComponent } from './components/inventory/menu/add/add.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'inventory', component: InventoryComponent},
   { path: 'inventory/manage-menu', component: MenuComponent },
+  { path: 'inventory/manage-menu/edit', component: EditMenuComponent },
+  { path: 'inventory/manage-menu/add', component: AddMenuComponent },
   { path: 'inventory/manage-ingredient', component: IngerdientComponent},
   { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'order', component: OrderComponent},

@@ -21,7 +21,8 @@ import {
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { MenuComponent } from './components/inventory/menu/menu.component';
 import { IngerdientComponent } from './components/inventory/ingerdient/ingerdient.component';
-
+import { EditMenuComponent } from './components/inventory/menu/edit/edit.component';
+import { AddMenuComponent } from './components/inventory/menu/add/add.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { IngerdientComponent } from './components/inventory/ingerdient/ingerdien
     MenuComponent,
     IngerdientComponent,
     OrderComponent,
+    EditMenuComponent,
+    AddMenuComponent,
   ],
   imports: [
     BrowserModule,
