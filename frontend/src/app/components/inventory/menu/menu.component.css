@@ -87,41 +87,7 @@
       height: 100px;
     }
 
-    .input {
-      height: 45px; /* ความสูงของ input */
-      width: 90%; /* ใช้ความกว้างเต็มของ input-field */
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-      outline: none;
-      color: #40414a;
-      box-sizing: border-box; /* รวม padding และ border ไว้ในขนาดของ input */
-      margin-left: 5%;
-      margin-bottom: 5%;
-      font-size: large;
-    }
-
-    .input-box .input-field label {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      pointer-events: none;
-      transition: 0.5s;
-      color: #aaa; /* สีของ label ในตอนเริ่มต้น */
-    }
-
-
-    .input-field .input:focus,
-    .input-field .input {
-      border-bottom: 1px solid #009970; /* สีของขอบเมื่อมีการโฟกัส */
-    }
-    .pic {
-      background: pink;
-      border: 2px #009970;
-      border-radius: 12px;
-      margin-left: 5%;
-      /* margin-left: 5%; */
-    }
+    
 
   
   

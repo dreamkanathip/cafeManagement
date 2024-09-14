@@ -85,6 +85,98 @@
     td{
       height: 100px;
     }
+    .input {
+      height: 45px; /* ความสูงของ input */
+      width: 90%; /* ใช้ความกว้างเต็มของ input-field */
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      outline: none;
+      color: #40414a;
+      box-sizing: border-box; /* รวม padding และ border ไว้ในขนาดของ input */
+      margin-left: 5%;
+      margin-bottom: 5%;
+      font-size: large;
+    }
+
+    .input-box .input-field label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      pointer-events: none;
+      transition: 0.5s;
+      color: #aaa; /* สีของ label ในตอนเริ่มต้น */
+    }
+
+
+    .input-field .input:focus,
+    .input-field .input {
+      border-bottom: 1px solid #009970; /* สีของขอบเมื่อมีการโฟกัส */
+    }
+    .pic {
+      background: pink;
+      border: 2px #009970;
+      border-radius: 12px;
+      margin-left: 5%;
+      /* margin-left: 5%; */
+    }
+
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Hide the browser's default radio button */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+    
+    /* On mouse-over, add a grey background color */
+    .category:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+    
+    /* When the radio button is checked, add a blue background */
+    .category input:checked ~ .checkmark {
+      background-color: #2196F3;
+    }
+    
+    .category input:checked ~ .checkmark:after {
+      display: block;
+    }
+    .category .checkmark::after{
+      top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+
+    }
+    
   
   
   

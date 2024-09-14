@@ -1,9 +1,7 @@
-const categorySchema = require('./category.js')
-
 const mongoose = require("mongoose");
 
 const menuSchema = new mongoose.Schema({
-  itemName: {
+  name: {
     type: String,
     required: true,
   },
@@ -11,9 +9,11 @@ const menuSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  description: {
+    type: String,
+  },
   category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    type: String,
     required: true
   }
 });

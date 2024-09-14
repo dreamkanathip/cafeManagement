@@ -1,8 +1,6 @@
-interface Menu {
-    p_id: number,
-    p_name: string,
-    p_quantity: number,
-    p_price: number
+export interface menuType {
+    name: string,
+    price: number,
+    description: string,
+    category: string,
 }
-
-export type menuType = Menu[]
