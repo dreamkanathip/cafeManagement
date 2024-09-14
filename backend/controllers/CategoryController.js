@@ -2,12 +2,12 @@ const Category = require("../models/category")
 
 const addCategory = async (req, res) => {
     try {
-        const { categoryName } = req.body
-        const categorydb = await Category.findOne({ categoryName })
+        const { category } = req.body
+        const categorydb = await Category.findOne({ category })
         if (categorydb) return res.status(404).send({ message: "Category Already Exist" });
 
         const newCategory = new Category ({
-            categoryName
+            category
         })
 
         const result = await newCategory.save();
@@ -19,8 +19,13 @@ const addCategory = async (req, res) => {
 }
 
 const getAllCategory = async (req, res) => {
-    const categories = await Category.find({})
-    if (!categories) return res.status(404).send({ message: "No Categories found" });
+    try {
+        const result = await Category.find()
+        res.status(200).send(result)
+      } catch (err) {
+        console.error("Error fetching menu info:", err);
+        res.status(500).send({ message: "Internal server error" });
+      }
 }
 
 const getCategoryByName = async (req, res) => {
@@ -35,7 +40,6 @@ const getCategoryByName = async (req, res) => {
         console.error("Error Occurred:", err);
         res.status(500).send({ message: "Internal server error" });
     }
-    
 }
 
 module.exports = { addCategory, getAllCategory, getCategoryByName }

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const menuSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,10 +10,15 @@ const menuSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    // required: true,
   },
   category: {
     type: String,
     required: true
+  },
+  image: {
+    type: String,
+    require: true
   }
 });
 
