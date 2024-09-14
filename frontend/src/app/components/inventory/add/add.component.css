@@ -114,8 +114,8 @@
       border-bottom: 1px solid #009970; /* สีของขอบเมื่อมีการโฟกัส */
     }
     .pic {
-      background: pink;
-      border: 2px #009970;
+      /* background: pink; */
+      border: 10px #009970;
       border-radius: 12px;
       margin-left: 5%;
       /* margin-left: 5%; */
@@ -133,50 +133,28 @@
       -ms-user-select: none;
       user-select: none;
     }
-    
-    /* Hide the browser's default radio button */
-    .container input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
+    .img {
+      height: 100%;
+      width: 100%;
     }
-    
-    /* Create a custom radio button */
-    .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 25px;
-      width: 25px;
-      background-color: #eee;
-      border-radius: 50%;
-    }
-    
-    /* On mouse-over, add a grey background color */
-    .category:hover input ~ .checkmark {
-      background-color: #ccc;
-    }
-    
-    /* When the radio button is checked, add a blue background */
-    .category input:checked ~ .checkmark {
-      background-color: #2196F3;
-    }
-    
-    .category input:checked ~ .checkmark:after {
-      display: block;
-    }
-    .category .checkmark::after{
-      top: 9px;
-      left: 9px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: white;
 
+    .custom-file-input {
+      cursor: pointer;
+      display: block;
+      font-size: 0.875rem;
+      color: #495057;
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
     
+    .custom-file-input:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    }
   
   
   

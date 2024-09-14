@@ -9,8 +9,8 @@
           <table class="table table-striped table-inverse">
             <thead class="thead-inverse">
               <tr>
-                <th></th>
-                <th>ID.</th>
+                <th>No.</th>
+                <th>Image</th>
                 <th>Name</th>
                 <th></th>
                 <th>
@@ -20,9 +20,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of menuItems">
-                <td>A</td>
-                <td scope="row"></td>
+              <tr *ngFor="let item of menuItems; index as i">
+                <td>{{i+1}}</td>
+                <td>
+                  <img src="data:image/jpeg;base64,{{item.image}}" alt="Menu Item Image" class="img"/>
+                </td>
                 <td>{{item.name}}</td>
                 <td>
                   <button class="edit-menu-btn btn btn-warning">
@@ -30,7 +32,7 @@
                   </button>
                 </td>
                 <td>
-                  <button class="edit-menu-btn btn btn-danger">
+                  <button class="edit-menu-btn btn btn-danger" (click)="deleteMenuById(item._id)">
                     delete
                   </button>
                 </td>

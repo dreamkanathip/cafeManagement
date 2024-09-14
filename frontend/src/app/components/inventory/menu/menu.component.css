@@ -82,9 +82,24 @@
       height: 100%; /* Full height */
       overflow: auto; /* Enable scroll if needed */
     }
+    th:nth-child(1){
+      text-align: center;
+    }
+    td:nth-child(1) {
+      width: 10%;
+      text-align: center;
+    }
+    td:nth-child(2) {
+      height: 12%;
+      width: 12%;
+    }
+    td:nth-child(3) {
+      width: 40%
+    }
 
-    td {
-      height: 100px;
+    .img {
+      height: 100%;
+      width: 100%;
     }
 
     

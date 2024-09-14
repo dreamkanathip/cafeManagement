@@ -13,26 +13,22 @@ export class MenuComponent implements OnInit{
 
   selectedItem!:string
   showAlert:boolean = false; // Variable to control the alert visibility
-  menuItems: menuType[] = [
-  ];
+  menuItems!: any;
+  category!: any;
 
-  constructor(
-    private menuService: MenuService
-  ){
-    console.log("sssss", this.menuItems)
+  constructor(private menuService: MenuService){
+    this.menuService.getAllMenu().subscribe(result => {
+      this.menuItems = result
+    })
   }
   
-  ngOnInit(): void {
-    this.menuService.getAllMenu().subscribe(
-      (data: menuType[]) => {
-        this.menuItems = data;
-      },
-      (error) => {
-        console.error('Error fetching menu items', error);
-      }
-    );
+  deleteMenuById(id: string) {
+    this.menuService.deleteMenuById(id).subscribe(result => {
+      this.menuItems = this.menuItems.filter((item: menuType) => item._id !== id);
+    }, error => {
+      console.error('Error deleting menu item', error);
+    });
   }
-  getAllMenu(){
-    return this.menuService.getAllMenu()
+  ngOnInit(): void {
   }
 }

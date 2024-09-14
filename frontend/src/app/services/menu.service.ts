@@ -19,5 +19,15 @@ export class MenuService implements OnInit{
   getAllMenu(): Observable<menuType[]> {
     return this.http.get<menuType[]>(`${this.apiUrl}/allMenu`);
   }
-}
 
+  getAllCategory(): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/allCategory`);
+  }
+
+  deleteMenuById(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/menu/${id}`)
+  }
+  addMenu(menu: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/addMenu`, menu);
+  }
+}
