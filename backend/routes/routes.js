@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const multer = require('multer'); // Import multer for file uploads
 const authController = require("../controllers/authController");
 const MenuController = require("../controllers/MenuController");
 const CategoryController = require("../controllers/CategoryController");
@@ -7,25 +8,29 @@ const authenticateToken = require("../middleware/authMiddleware");
 
 const router = Router();
 
-// Login, register, logout
+const storage = multer.memoryStorage(); // In-memory storage for multer
+const upload = multer({ storage: storage });
+
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.get("/user", authenticateToken, authController.getUser);
 router.post("/logout", authController.logout);
 
 // Menu
-router.post("/addMenu", MenuController.addMenu);
+router.post("/addMenu", upload.single('image'), MenuController.addMenu);
 router.get("/allMenu", MenuController.getMenu);
-
+router.delete("/menu/:_id", MenuController.deleteMenu)
 // Category
-router.post("/addCategory", CategoryController.addCategory);
-router.get("/categories", CategoryController.getAllCategory);
-router.get("/category/:category", CategoryController.getCategoryByName);
+router.get("/allCategory", CategoryController.getAllCategory)
+router.post("/addCategory", CategoryController.addCategory)
+router.get("/categories", CategoryController.getAllCategory)
+router.get("/category/:category", CategoryController.getCategoryByName)
 
 // Payment
 router.post("/addPayment", PaymentController.addPayment);
 router.get("/payments", PaymentController.getAllPayments);
 router.patch("/payment", PaymentController.updatePayment);
 router.delete("/payment", PaymentController.deletePayment);
+
 
 module.exports = router;

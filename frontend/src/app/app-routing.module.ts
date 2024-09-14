@@ -7,8 +7,8 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { IngerdientComponent } from './components/inventory/ingerdient/ingerdient.component';
 import { MenuComponent } from './components/inventory/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
-import { EditMenuComponent } from './components/inventory/menu/edit/edit.component';
-import { AddMenuComponent } from './components/inventory/menu/add/add.component';
+import { EditMenuComponent } from './components/inventory/edit/edit.component';
+import { AddMenuComponent } from './components/inventory/add/add.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
+import { menuType } from '../../../interfaces/menu.model';
 
 declare var bootstrap: any;
 
@@ -8,22 +9,26 @@ declare var bootstrap: any;
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
 
   selectedItem!:string
   showAlert:boolean = false; // Variable to control the alert visibility
+  menuItems!: any;
+  category!: any;
 
-  constructor(
-    private menuService: MenuService
-  ){}
-  getAllMenu(){
-    return this.menuService.getAllMenu()
+  constructor(private menuService: MenuService){
+    this.menuService.getAllMenu().subscribe(result => {
+      this.menuItems = result
+    })
   }
-
-  onSubmit() {
-    this.showAlert = true;
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 2000);
+  
+  deleteMenuById(id: string) {
+    this.menuService.deleteMenuById(id).subscribe(result => {
+      this.menuItems = this.menuItems.filter((item: menuType) => item._id !== id);
+    }, error => {
+      console.error('Error deleting menu item', error);
+    });
+  }
+  ngOnInit(): void {
   }
 }
