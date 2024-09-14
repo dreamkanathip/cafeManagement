@@ -3,18 +3,26 @@
   color: #009970;
   font-size: 24px;
   transition: 0.3s color;
-  margin-bottom: 1.75px;
+}
+.offcanvas-title {
+  font-weight: 500;
+  color: #009970;
+  font-size: 24px;
+  transition: 0.3s color;
 }
 .logout-button {
   background-color: #009970;
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
   padding: 8px 20px;
   border-radius: 50px;
   text-decoration: none;
   transition: 0.3s background-color;
+  display: inline-flex; /* Use flexbox to adjust vertical alignment */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
 }
-.login-button:hover {
+.logout-button:hover {
   background-color: #00b383;
 }
 .navbar {
@@ -66,7 +74,8 @@
   }
 }
 .nav-item {
-  font-size: 18px;
+  font-size: 17px;
+  margin: 0 60px; /* Horizontal spacing between nav items */
 }
 
 .nav-item.dropdown:hover .dropdown-menu {
