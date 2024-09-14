@@ -1,53 +1,15 @@
-<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a routerLink="/" class="navbar-brand">Home</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mx-auto mb-2 mb-md-0" *ngIf="authenticated">
-        <li class="nav-item">
-          <a routerLink="/template1" class="nav-link">template1</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/template2" class="nav-link">template2</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/template3" class="nav-link">template3</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/template4" class="nav-link">template4</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/template5" class="nav-link">template5</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mb-2 mb-md-0" *ngIf="authenticated">
-        <li class="nav-item">
-          <a routerLink="/login" (click)="logout()" class="nav-link">Logout</a>
-        </li>
-      </ul>
-      ? <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="!authenticated">
-        <li class="nav-item">
-          <a routerLink="/login" class="nav-link">Login</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/register" class="nav-link">Register</a>
-        </li> 
-      </ul> -->
-<!-- </div>
-  </div>
-</nav> -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Navbar</title>
     <link rel="stylesheet" href="nav.component.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand me-auto">Café</a>
+        <a class="navbar-brand" href="#">Café</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -58,13 +20,118 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div
           class="offcanvas offcanvas-end"
           tabindex="-1"
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
         >
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a routerLink="/home" class="nav-link mx-lg-2">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="/order" class="nav-link mx-lg-2">Order</a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="/payment" class="nav-link mx-lg-2">Payment</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    routerLink="/inventory"
+                    class="nav-link mx-lg-2 dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Inventory
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="inventoryDropdown">
+                    <li>
+                      <a
+                        routerLink="/inventory/manage-menu"
+                        class="dropdown-item"
+                        >Manage Menu</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        routerLink="/inventory/manage-ingredient"
+                        class="dropdown-item"
+                        >Manage Ingredient</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <a routerLink="/login" (click)="logout()" class="logout-button"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <link rel="stylesheet" href="nav.component.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="">Poon Café</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Poon Café</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
               <li class="nav-item">
                 <a routerLink="/home" class="nav-link mx-lg-2">Home</a>
@@ -77,14 +144,14 @@
               </li>
               <li class="nav-item dropdown">
                 <a
-                  routerLink="/inventory"
+                  href="#"
                   class="nav-link mx-lg-2 dropdown-toggle"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Inventory
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="inventoryDropdown">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <li>
                     <a routerLink="/inventory/manage-menu" class="dropdown-item"
                       >Manage Menu</a
@@ -100,22 +167,16 @@
                 </ul>
               </li>
             </ul>
+            <a routerLink="/login" (click)="logout()" class="logout-button"
+              >Logout</a
+            >
           </div>
         </div>
-        <a routerLink="/login" (click)="logout()" class="logout-button"
-          >Logout</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
       </div>
     </nav>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
   </body>
 </html>
