@@ -1,47 +1,45 @@
 <app-nav></app-nav>
-
-<style>
-    .filter-menu {
-        margin-top: 50px;
-    }
-
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        background-color: black;
-    }
-</style>
-
-<div>
-    <section class="filter-menu">
-        <h1>Cafe Menu</h1>
-        <ul class="ul">
-            <li *ngFor="let filter of filters" 
-                (click)="filterMenu(filter)"
-                [class.current]="currentFilter === filter">
-                {{ filter }}
-            </li>
-        </ul>
+<link rel="stylesheet" href="../home/home.component.css" />
+<div class="main-video">
+    <div>
+        <div class="container">
+            <div class="menu-container">
+                <section class="filter-menu">
+                    <h1>Cafe Menu</h1>
+                    <ul class="ul">
+                        <li *ngFor="let filter of filters" 
+                            (click)="filterMenu(filter)"
+                            [class.current]="currentFilter === filter">
+                            {{ filter }}
+                        </li>
+                    </ul>
+                    
+                    <table class="table table-striped table-inverse">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of menu" 
+                                [style.display]="isItemVisible(item.category) ? 'table-row' : 'none'">
+                                <td scope="row">{{ item.name }}</td>
+                                <td>{{ item.category }}</td>
+                                <td><button class="items">Select</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            
+            </div>
+            </div>
+        </div>
         
-        <table class="table table-striped table-inverse">
-            <thead class="thead-inverse">
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Select</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of menu" 
-                    [style.display]="isItemVisible(item.category) ? 'table-row' : 'none'">
-                    <td scope="row">{{ item.name }}</td>
-                    <td>{{ item.category }}</td>
-                    <td><button class="items">Select</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
+    <video autoplay loop muted src="assets/cafe.mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
+
+
