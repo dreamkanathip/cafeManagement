@@ -23,11 +23,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of menu" 
+                            <tr *ngFor="let item of menu; index as i" 
                                 [style.display]="isItemVisible(item.category) ? 'table-row' : 'none'">
                                 <td scope="row">{{ item.name }}</td>
                                 <td>{{ item.category }}</td>
-                                <td><button class="items">Select</button></td>
+                                <td><button class="fa fa-cart-plus" (click)="addToCart(i)">Select</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -36,6 +36,10 @@
             </div>
             </div>
         </div>
+
+    <div class="bottom-right-word" data-bs-toggle="modal" data-bs-target="#cart">
+        <button class="fa fa-cart-plus" role="button">{{getCounter()}}</button>
+    </div>
         
     <video autoplay loop muted src="assets/cafe.mp4">
         Your browser does not support the video tag.
@@ -43,3 +47,45 @@
 </div>
 
 
+<!-- Cart -->
+<div class="modal fade" id="cart">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header-->
+             <div class="modal-header lg:d-flex justify-content-between">
+                <h4 class="modal-title">Cart</h4>
+                <button type="button" class="close ml-auto" data-bs-dismiss="modal">&times;</button>
+             </div>
+
+             <!-- Modal Body -->
+              <div class="modal-body">
+                <table class="table table-striped table-inverse">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>ID.</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cart; index as i">
+                            <td scope="row">{{item._id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="text-end">
+                    <b>Total: </b> {{getSumPrice()}}
+                </p>
+              </div>
+
+              <!-- Modal Footer -->
+               <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               </div>
+        </div>
+    </div>
+ </div>
