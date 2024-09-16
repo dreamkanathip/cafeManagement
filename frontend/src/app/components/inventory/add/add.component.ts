@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -9,10 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add.component.css']
 })
 export class AddMenuComponent implements OnInit{
-
+  @Output() menuAdded = new EventEmitter<void>();
   category!: any
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
   
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
