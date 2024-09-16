@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: '', redirectTo: '/order', pathMatch: 'full' },
   { path: 'inventory', component: InventoryComponent },
   { path: 'inventory/manage-menu', component: MenuComponent },
   { path: 'inventory/manage-menu/edit', component: EditMenuComponent },

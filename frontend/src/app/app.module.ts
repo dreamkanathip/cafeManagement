@@ -24,6 +24,7 @@ import { IngerdientComponent } from './components/inventory/ingerdient/ingerdien
 import { EditMenuComponent } from './components/inventory/edit/edit.component';
 import { AddMenuComponent } from './components/inventory/add/add.component';
 import { CategoryComponent } from './components/inventory/category/category.component';
+import { CartComponent } from './components/order/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CategoryComponent } from './components/inventory/category/category.comp
     EditMenuComponent,
     AddMenuComponent,
     CategoryComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
