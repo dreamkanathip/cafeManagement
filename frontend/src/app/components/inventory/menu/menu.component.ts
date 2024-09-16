@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit{
   showAlert:boolean = false; // Variable to control the alert visibility
   menuItems!: any;
   category!: any;
+  updateId!: string
 
   constructor(private menuService: MenuService){
     this.menuService.getAllMenu().subscribe(result => {
@@ -31,6 +32,10 @@ export class MenuComponent implements OnInit{
     });
   }
 
+  updateMenuById(id:string) {
+    this.updateId = id;
+  }
+  
   loadMenuItems() {
     console.log("loaded")
     this.menuService.getAllMenu().subscribe((result) => {
@@ -41,5 +46,7 @@ export class MenuComponent implements OnInit{
   onMenuAdded() {
     this.loadMenuItems()
   }
-  
+  onMenuEdit() {
+    this.loadMenuItems()
+  }
 }

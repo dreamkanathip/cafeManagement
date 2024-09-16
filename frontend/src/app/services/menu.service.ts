@@ -30,4 +30,7 @@ export class MenuService implements OnInit{
   addMenu(menu: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/addMenu`, menu);
   }
+  updateMenu(menu:any, id:string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/menuUpdate/${id}`, menu)
+  }
 }

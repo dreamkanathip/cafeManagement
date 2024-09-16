@@ -32,6 +32,20 @@ const getMenu = async (req, res) => {
     }
   }
 
+  const getMenuById = async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const result = await Menu.findById(_id)
+      if (!result) {
+        return res.status(404).json({ message: "Menu item not found" });
+      }
+      res.status(200).send(result)
+    } catch (err) {
+      console.error("Error fetching menu info:", err);
+      res.status(500).send({ message: "Internal server error" });
+    }
+  }
+
 const deleteMenu = async(req, res) => {
   try {
     const { _id } = req.params;
@@ -46,4 +60,33 @@ const deleteMenu = async(req, res) => {
   }
 }
 
-module.exports = { addMenu, getMenu, deleteMenu }
+const updateMenu = async(req, res) => {
+  try {
+    const { _id } = req.params;
+
+    // Initialize an empty object to hold the fields to update
+    const payload = {};
+
+    // Add fields to the payload if they are present in the request body
+    const { name, price, description, category } = req.body;
+    if (name) payload.name = name;
+    if (price) payload.price = price;
+    if (description) payload.description = description;
+    if (category) payload.category = category;
+
+    // Check if there's an uploaded file and include it in the payload if it exists
+    if (req.file) {
+      payload.image = req.file.buffer.toString('base64');
+    }
+    const result = await Menu.findByIdAndUpdate(_id, {$set:payload}, { new: true });
+    
+    if (!result) {
+      return res.status(404).json({ message: "Menu item not found" });
+    }
+    res.status(200).json({ message: "Menu item update successfully" });
+  } catch (err) {
+    console.error("Error update menu item:", err);
+    res.status(500).send({ message: "Internal server error" });
+  }
+}
+module.exports = { addMenu, getMenu, deleteMenu, updateMenu, getMenuById }

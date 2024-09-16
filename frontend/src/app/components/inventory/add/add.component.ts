@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
-import { MenuComponent } from '../menu/menu.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -68,7 +67,7 @@ export class AddMenuComponent implements OnInit{
       // Send formData to the server
       this.menuService.addMenu(formData).subscribe((result) => {
         console.log('Post response:', result);
-        Swal.fire('Success', 'Registration successful!', 'success');
+        Swal.fire('Success', 'Added successful!', 'success');
         this.menuAdded.emit();
       });
       console.log('Form Submitted', formData);
