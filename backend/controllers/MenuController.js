@@ -4,15 +4,21 @@ const addMenu = async(req, res) => {
   try {
     const {name, price, description, category } = req.body
     const imageBase64 = req.file.buffer.toString('base64');
+
+    const categoryExist = await Category.findOne({ categoryName: category });
+    if (!categoryExist) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
     const payload = new Menu({
       name,
       price,
       description,
-      category,
+      category: categoryExist._id,
       image: imageBase64
     })
     const result = await payload.save();
-    res.status(201).json({ message: "Add menu successssssssss!", payload: result});
+    res.status(201).json({ message: "Add menu success!", payload: result});
   } catch(err) {
     throw new Error(err)
   }

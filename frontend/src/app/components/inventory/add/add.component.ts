@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -9,13 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add.component.css']
 })
 export class AddMenuComponent implements OnInit{
-  @Output() menuAdded = new EventEmitter<void>();
+
   category!: any
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = null;
-  selectedFile: File | null = null; // Store the file here
   
-
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl(''),
@@ -23,6 +21,7 @@ export class AddMenuComponent implements OnInit{
     category: new FormControl(''),
     image: new FormControl('')
   })
+
   constructor(private menuService: MenuService) {
     this.menuService.getAllCategory().subscribe(result => {
       this.category = result;
@@ -44,7 +43,6 @@ export class AddMenuComponent implements OnInit{
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.selectedFile = file; // Store the file
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;
@@ -74,6 +72,6 @@ export class AddMenuComponent implements OnInit{
     } else {
       console.log('Form is invalid or no image selected');
     }
-    
   }
+
 }

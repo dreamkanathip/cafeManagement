@@ -1,47 +1,53 @@
 <app-nav></app-nav>
+<link rel="stylesheet" href="../home/home.component.css" />
+<div class="main-video">
+    <div class="all-container">
+        <div class="container">
+            <div class="menu-container">
+                <div class="menu-list">
+                    <section class="filter-menu">
 
-<style>
-    .filter-menu {
-        margin-top: 50px;
-    }
+                        <h1>Cafe Menu</h1>
+                        <ul class="ul">
+                            <li *ngFor="let filter of filters" 
+                                (click)="filterMenu(filter)"
+                                [class.current]="currentFilter === filter">
+                                {{ filter }}
+                            </li>
+                            <div data-bs-toggle="modal" data-bs-target="#cart-modal">
+                                <button class="fa fa-cart-plus" role="button">{{getCounter()}}</button>
+                            </div>
+                        </ul>
+                        
+                        <table class="table table-striped table-inverse">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of menu; index as i" 
+                                    [style.display]="isItemVisible(item.category) ? 'table-row' : 'none'">
+                                    <td scope="row">{{ item.name }}</td>
+                                    <td>{{ item.category }}</td>
+                                    <td><button class="fa fa-cart-plus" (click)="addToCart(i)">Select</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        background-color: black;
-    }
-</style>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div>
-    <section class="filter-menu">
-        <h1>Cafe Menu</h1>
-        <ul class="ul">
-            <li *ngFor="let filter of filters" 
-                (click)="filterMenu(filter)"
-                [class.current]="currentFilter === filter">
-                {{ filter }}
-            </li>
-        </ul>
-        
-        <table class="table table-striped table-inverse">
-            <thead class="thead-inverse">
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Select</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of menu" 
-                    [style.display]="isItemVisible(item.category) ? 'table-row' : 'none'">
-                    <td scope="row">{{ item.name }}</td>
-                    <td>{{ item.category }}</td>
-                    <td><button class="items">Select</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <app-cart class="modal fade" id="cart-modal"></app-cart> 
 
+    <video autoplay loop muted src="assets/cafe.mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
+
+

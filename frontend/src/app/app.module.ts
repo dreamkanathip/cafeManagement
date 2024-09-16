@@ -23,6 +23,8 @@ import { MenuComponent } from './components/inventory/menu/menu.component';
 import { IngerdientComponent } from './components/inventory/ingerdient/ingerdient.component';
 import { EditMenuComponent } from './components/inventory/edit/edit.component';
 import { AddMenuComponent } from './components/inventory/add/add.component';
+import { CategoryComponent } from './components/inventory/category/category.component';
+import { CartComponent } from './components/order/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AddMenuComponent } from './components/inventory/add/add.component';
     OrderComponent,
     EditMenuComponent,
     AddMenuComponent,
+    CategoryComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
