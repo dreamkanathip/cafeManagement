@@ -36,6 +36,9 @@ export class OrderComponent implements OnInit {
 
   constructor(private orderService: OrderService) {
     this.cart = this.orderService.getCart()
+    // this.orderService.getAllMenu().subscribe(result => {
+    //   this.menu = result
+    // })
   }
 
   ngOnInit(): void { }
