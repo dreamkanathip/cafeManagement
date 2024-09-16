@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add',
@@ -51,8 +52,26 @@ export class AddMenuComponent implements OnInit{
   }
 
   submit() {
-    this.menuService.addMenu(this.menuForm)
-    console.log('submit')
+    if (this.menuForm.valid && this.selectedFile) {
+      const formData = new FormData();
+      formData.append('name', this.menuForm.get('name')?.value ?? '');
+      formData.append('price', this.menuForm.get('price')?.value ?? '');
+      formData.append('description', this.menuForm.get('description')?.value ?? '');
+      formData.append('category', this.menuForm.get('category')?.value ?? '');
+      
+      // Append the file as 'image'
+      formData.append('image', this.selectedFile);
+
+      // Send formData to the server
+      this.menuService.addMenu(formData).subscribe((result) => {
+        console.log('Post response:', result);
+        Swal.fire('Success', 'Added successful!', 'success');
+        this.menuAdded.emit();
+      });
+      console.log('Form Submitted', formData);
+    } else {
+      console.log('Form is invalid or no image selected');
+    }
   }
 
 }

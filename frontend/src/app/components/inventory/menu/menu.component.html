@@ -31,8 +31,8 @@
                 </td>
                 <td>{{item.name}}</td>
                 <td>
-                  <button class="edit-menu-btn btn btn-warning">
-                    edit
+                  <button class="edit-menu-btn btn btn-warning" data-toggle="modal" data-target="#edit-menu-modal" (click)="updateMenuById(item._id)">
+                    update menu
                   </button>
                 </td>
                 <td>
@@ -52,5 +52,8 @@
   </video>
 </div>
 
-<app-add class="modal fade" id="add-menu-modal"></app-add>
+
+<app-add class="modal fade" id="add-menu-modal" (menuAdded)="onMenuAdded()"></app-add>
+<app-edit class="modal fade" id="edit-menu-modal" (menuEdit)="onMenuEdit()" [updateId]="updateId"></app-edit>
 <app-category class="modal fade" id="add-category-modal"></app-category>
+
