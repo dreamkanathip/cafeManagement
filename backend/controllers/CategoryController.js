@@ -3,7 +3,7 @@ const Category = require("../models/category")
 const addCategory = async (req, res) => {
     try {
         const { category } = req.body
-        const categorydb = await Category.findOne({ category })
+        const categorydb = await Category.findOne({ categoryName: category })
         if (categorydb) return res.status(404).send({ message: "Category Already Exist" });
 
         const newCategory = new Category ({
