@@ -78,7 +78,7 @@ const updateMenu = async(req, res) => {
     if (req.file) {
       payload.image = req.file.buffer.toString('base64');
     }
-    const result = await Menu.findByIdAndUpdate(_id, {$set:payload}, { new: true });
+    const result = await Menu.findOneAndReplace({_id:_id}, payload);
     
     if (!result) {
       return res.status(404).json({ message: "Menu item not found" });
