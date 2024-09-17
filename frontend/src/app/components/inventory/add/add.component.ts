@@ -27,7 +27,7 @@ export class AddMenuComponent implements OnInit{
     this.menuService.getAllCategory().subscribe(result => {
       this.category = result;
     })
-    console.log(this.selectedCategory)
+    console.log('Add Menu modal hace receieved all category')
   }
 
   ngOnInit(): void {}

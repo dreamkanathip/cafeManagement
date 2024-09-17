@@ -26,8 +26,9 @@ router.put("/menuUpdate/:_id", upload.single('image'), MenuController.updateMenu
 // Category
 router.get("/allCategory", CategoryController.getAllCategory)
 router.post("/addCategory", CategoryController.addCategory)
-router.get("/categories", CategoryController.getAllCategory)
-router.get("/category/:category", CategoryController.getCategoryByName)
+router.get("/category/:_id", CategoryController.getCategoryById)
+router.delete("/category/:_id", CategoryController.deleteCategory)
+router.put("/categoryUpdate/:_id", CategoryController.updateCategory)
 
 // Payment
 router.post("/addPayment", PaymentController.addPayment);
