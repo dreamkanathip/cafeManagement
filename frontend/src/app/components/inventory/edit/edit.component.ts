@@ -8,15 +8,16 @@ import Swal from 'sweetalert2';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditMenuComponent implements OnInit{
-  @Output() menuEdit = new EventEmitter<void>();
-  @Input() updateId!: string;
+export class EditMenuComponent implements OnInit {
+  @Output() menuUpdate = new EventEmitter<void>();
+  // @Input() 
+
+  updateId!: string;
   category!: any
   selectedCategory: string = "Select Category"
-  imagePreview: string | ArrayBuffer | null = null;
+  imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
   id!: string
-  
 
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -25,14 +26,14 @@ export class EditMenuComponent implements OnInit{
     category: new FormControl(''),
     image: new FormControl('')
   })
+
   constructor(private menuService: MenuService) {
     this.menuService.getAllCategory().subscribe(result => {
       this.category = result;
     })
-    console.log(this.selectedCategory)
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   selectCategory(i: number) {
     this.selectedCategory = this.category[i].category
@@ -54,27 +55,66 @@ export class EditMenuComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
+  getItem(id: any) {
+    this.updateId = id;
+    this.menuService.getSomeMenu(id).subscribe((result) => {
+      this.menuForm.patchValue({
+        name: result.name,
+        price: result.price.toString(),
+        description: result.description,
+        category: result.category,
+        image: result.image
+      });
+        this.imagePreview = "data:image/png;base64,"+result.image;
+        this.selectedCategory = result.category;
+    })
+    console.log(this.menuForm)
+  }
+
+  clearForm() {
+    this.menuForm.reset();
+    this.imagePreview = "/assets/placeholder.jpg"
+    this.selectedCategory = "Select Category"
+  }
 
   submit() {
-    if (this.selectedFile) {
+    if (this.menuForm.valid && this.selectedFile) {
       const formData = new FormData();
       formData.append('name', this.menuForm.get('name')?.value ?? '');
       formData.append('price', this.menuForm.get('price')?.value ?? '');
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
-      
-      // Append the file as 'image'
+
       formData.append('image', this.selectedFile);
 
-      // Send formData to the server
-      this.menuService.updateMenu(formData, this.updateId).subscribe((result) => {
-        console.log('Post response:', result);
-        Swal.fire('Success', 'Updated successful!', 'success');
-        this.menuEdit.emit();
+      Swal.fire({
+        title: "Do you want to save the changes?",
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        icon: "warning",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.menuService.updateMenu(formData, this.updateId).subscribe((result) => {
+            console.log('Post response:', result);
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Menu work has been updated!",
+              showConfirmButton: true,
+            });
+            this.menuUpdate.emit();
+            this.clearForm()
+          });
+        }
       });
-      console.log('Form Submitted', formData);
     } else {
-      console.log('Form is invalid or no image selected');
+      console.log('Please complete the form');
+      Swal.fire({
+        icon: "error",
+        title: "error",
+        text: "Please complete the form",
+        showConfirmButton: true,
+      });
     }
   }
 }

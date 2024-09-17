@@ -19,7 +19,7 @@ router.post("/logout", authController.logout);
 // Menu
 router.post("/addMenu", upload.single('image'), MenuController.addMenu);
 router.get("/allMenu", MenuController.getMenu);
-router.get("/menu/:_id", MenuController.getMenu);
+router.get("/menu/:_id", MenuController.getMenuById);
 router.delete("/menu/:_id", MenuController.deleteMenu)
 router.put("/menuUpdate/:_id",upload.single('image'), MenuController.updateMenu)
 
