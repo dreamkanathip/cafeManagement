@@ -1,3 +1,4 @@
+
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { categoryType } from '../../../interfaces/category.model';
@@ -40,5 +41,4 @@ export class CategoryComponent implements OnInit{
       console.log('Category Name is invalid or Already Exist');
     }
   }
-
 }
