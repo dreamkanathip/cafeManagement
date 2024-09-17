@@ -12,7 +12,11 @@
               <div class="form-group">
                 <h5>Image</h5>
                 <label for="menu-image" class="upload-pic">
-                  <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-preview mt-2 img"
+                  <img 
+                    *ngIf="imagePreview" 
+                    [src]="imagePreview" 
+                    alt="Image Preview" 
+                    class="img-preview mt-2 img"
                     id="img" />
                 </label>
                 <label class="btn btn-primary upload-btn" for="menu-image">Upload Image</label>

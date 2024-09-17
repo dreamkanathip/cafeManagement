@@ -20,7 +20,7 @@ export class MenuService implements OnInit{
     return this.http.get<menuType[]>(`${this.apiUrl}/allMenu`);
   }
 
-  getSomeMenu(id: number) : Observable<menuType> {
+  getSomeMenu(id: string) : Observable<menuType> {
     return this.http.get<menuType>(`${this.apiUrl}/menu/${id}`);
   }
 

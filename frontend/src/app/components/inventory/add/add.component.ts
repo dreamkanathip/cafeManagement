@@ -80,7 +80,7 @@ export class AddMenuComponent implements OnInit{
             Swal.fire({
               icon: "success",
               title: "Success",
-              text: "Menu work has been saved",
+              text: "Menu work has been saved!",
               showConfirmButton: true,
             });
             this.menuAdded.emit();

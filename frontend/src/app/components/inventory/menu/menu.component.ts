@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { menuType } from '../../../interfaces/menu.model';
 import Swal from 'sweetalert2';
+import { EditMenuComponent } from '../edit/edit.component';
 
 declare var bootstrap: any;
 
@@ -12,21 +13,20 @@ declare var bootstrap: any;
 })
 export class MenuComponent implements OnInit{
 
+  @ViewChild(EditMenuComponent) editMenuComponent!: EditMenuComponent;
+
   selectedItem!:string
   showAlert:boolean = false; // Variable to control the alert visibility
   menuItems!: any;
   category!: any;
-  updateId!: string
 
   constructor(private menuService: MenuService){
-    this.menuService.getAllMenu().subscribe(result => {
-      this.menuItems = result
-    })
+    this.loadMenuItems()
   }
   
   deleteMenuById(id: string) {
     Swal.fire({
-      title: "Are you sure?",
+      title: "Confirm deleting this menu?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -50,9 +50,11 @@ export class MenuComponent implements OnInit{
   }
 
   updateMenuById(id:string) {
-    this.updateId = id;
+    this.setUpdateValue(id)
   }
-  
+  setUpdateValue(id: string) {
+    this.editMenuComponent.getItem(id)
+  }
   loadMenuItems() {
     console.log("loaded")
     this.menuService.getAllMenu().subscribe((result) => {
@@ -63,7 +65,7 @@ export class MenuComponent implements OnInit{
   onMenuAdded() {
     this.loadMenuItems()
   }
-  onMenuEdit() {
+  onMenuUpdate() {
     this.loadMenuItems()
   }
 
