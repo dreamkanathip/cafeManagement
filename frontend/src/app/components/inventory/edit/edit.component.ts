@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditMenuComponent implements OnInit {
+export class EditMenuComponent implements OnInit{
   @Output() menuEdit = new EventEmitter<void>();
   @Input() updateId!: string;
   category!: any
@@ -16,7 +16,7 @@ export class EditMenuComponent implements OnInit {
   imagePreview: string | ArrayBuffer | null = null;
   selectedFile: File | null = null; // Store the file here
   id!: string
-
+  
 
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -32,7 +32,7 @@ export class EditMenuComponent implements OnInit {
     console.log(this.selectedCategory)
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   selectCategory(i: number) {
     this.selectedCategory = this.category[i].category
@@ -58,18 +58,21 @@ export class EditMenuComponent implements OnInit {
   submit() {
     if (this.selectedFile) {
       const formData = new FormData();
-
       formData.append('name', this.menuForm.get('name')?.value ?? '');
       formData.append('price', this.menuForm.get('price')?.value ?? '');
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
-      formData.append('image', this.selectedFile);
       
-      console.log("data", formData)
+      // Append the file as 'image'
+      formData.append('image', this.selectedFile);
+
+      // Send formData to the server
       this.menuService.updateMenu(formData, this.updateId).subscribe((result) => {
+        console.log('Post response:', result);
         Swal.fire('Success', 'Updated successful!', 'success');
         this.menuEdit.emit();
       });
+      console.log('Form Submitted', formData);
     } else {
       console.log('Form is invalid or no image selected');
     }

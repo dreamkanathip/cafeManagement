@@ -94,7 +94,7 @@
       outline: none;
       color: #40414a;
       box-sizing: border-box; /* รวม padding และ border ไว้ในขนาดของ input */
-      margin-left: 5%;
+      /* margin-left: 5%; */
       margin-bottom: 5%;
       font-size: large;
     }
@@ -117,7 +117,7 @@
       /* background: pink; */
       border: 10px #009970;
       border-radius: 12px;
-      margin-left: 5%;
+      /* margin-left: 5%; */
       /* margin-left: 5%; */
     }
 

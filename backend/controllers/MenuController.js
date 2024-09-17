@@ -74,7 +74,6 @@ const updateMenu = async(req, res) => {
       const imageBase64 = req.file.buffer.toString('base64');
       payload.image = imageBase64;
     }
-    console.log(payload)
     const result = await Menu.findOneAndReplace({_id:_id}, payload);
     
     if (result.modifiedCount === 0) {
