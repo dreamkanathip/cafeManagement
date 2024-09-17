@@ -31,7 +31,6 @@ export class MenuComponent implements OnInit{
     });
   }
 
-
   updateMenuById(id:string) {
     this.updateId = id;
   }

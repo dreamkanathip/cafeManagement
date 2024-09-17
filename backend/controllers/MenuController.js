@@ -4,21 +4,15 @@ const addMenu = async(req, res) => {
   try {
     const {name, price, description, category } = req.body
     const imageBase64 = req.file.buffer.toString('base64');
-
-    const categoryExist = await Category.findOne({ categoryName: category });
-    if (!categoryExist) {
-      return res.status(404).json({ message: 'Category not found' });
-    }
-
     const payload = new Menu({
       name,
       price,
       description,
-      category: categoryExist._id,
+      category,
       image: imageBase64
     })
     const result = await payload.save();
-    res.status(201).json({ message: "Add menu success!", payload: result});
+    res.status(201).json({ message: "Add menu successssssssss!", payload: result});
   } catch(err) {
     throw new Error(err)
   }
@@ -69,27 +63,23 @@ const deleteMenu = async(req, res) => {
 const updateMenu = async(req, res) => {
   try {
     const { _id } = req.params;
-
-    // Initialize an empty object to hold the fields to update
-    const payload = {};
-
-    // Add fields to the payload if they are present in the request body
-    const { name, price, description, category } = req.body;
-    if (name) payload.name = name;
-    if (price) payload.price = price;
-    if (description) payload.description = description;
-    if (category) payload.category = category;
-
-    // Check if there's an uploaded file and include it in the payload if it exists
-    if (req.file) {
-      payload.image = req.file.buffer.toString('base64');
+    const { name, price, description, category} = req.body;
+    const payload = {
+      name,
+      price,
+      description,
+      category,
     }
-    const result = await Menu.findByIdAndUpdate(_id, {$set:payload}, { new: true });
+    if (req.file) {
+      const imageBase64 = req.file.buffer.toString('base64');
+      payload.image = imageBase64;
+    }
+    const result = await Menu.findOneAndReplace({_id:_id}, payload);
     
-    if (!result) {
+    if (result.modifiedCount === 0) {
       return res.status(404).json({ message: "Menu item not found" });
     }
-    res.status(200).json({ message: "Menu item update successfully" });
+    res.status(200).json({ message: "Menu item update successfully"});
   } catch (err) {
     console.error("Error update menu item:", err);
     res.status(500).send({ message: "Internal server error" });
