@@ -52,7 +52,11 @@ export class AddMenuComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
-
+  clearForm() {
+    this.menuForm.reset();
+    this.imagePreview =''
+    this.selectedCategory = "Select Category"
+  }
   submit() {
     if (this.menuForm.valid && this.selectedFile) {
       const formData = new FormData();
@@ -66,6 +70,7 @@ export class AddMenuComponent implements OnInit{
       this.menuService.addMenu(formData).subscribe((result) => {
         Swal.fire('Success', 'Added successful!', 'success');
         this.menuAdded.emit();
+        this.clearForm()
       });
     } else {
       console.log('Form is invalid or no image selected');
