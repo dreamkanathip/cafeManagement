@@ -19,7 +19,8 @@
               <div class="form-group">
                 <h5>Image</h5>
                 <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-preview mt-2 img" />
-                <input type="file" class="form-control-file" (change)="onImageChange($event)" />
+                <label for="image">upload</label>
+                <input type="file" class="form-control-file" id="image" (change)="onImageChange($event)" />
               </div>
             </div>
             <div class="col-md-8 ml-auto">
@@ -43,10 +44,11 @@
                   <div class="form-group">
                     <h5>Category</h5>
                     <button class="btn btn-outline-secondary dropdown-toggle input" type="button"
-                      id="inputDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      id="inputDropdownButton" (click)="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
                       {{ selectedCategory }}
+                      {{dropdownOpen}}
                     </button>
-                    <div class="dropdown-menu p-3" aria-labelledby="inputDropdownButton">
+                    <div class="dropdown-menu p-3" *ngIf="dropdownOpen">
                       <a *ngFor="let cat of category; index as i" class="dropdown-item" (click)="selectCategory(i)">
                         {{cat.category}}
                       </a>
@@ -57,7 +59,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearForm()">Cancel</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>

@@ -14,7 +14,7 @@ export class AddMenuComponent implements OnInit{
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = null;
   selectedFile: File | null = null; // Store the file here
-  
+  dropdownOpen: boolean = false;
 
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -31,6 +31,10 @@ export class AddMenuComponent implements OnInit{
   }
 
   ngOnInit(): void {}
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
 
   selectCategory(i: number) {
     this.selectedCategory = this.category[i].category
