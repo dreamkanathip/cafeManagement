@@ -69,6 +69,7 @@ export class AddMenuComponent implements OnInit{
       formData.append('price', this.menuForm.get('price')?.value ?? '');
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
+      
       formData.append('image', this.selectedFile);
       
       this.menuService.addMenu(formData).subscribe(async (result) => {
@@ -76,6 +77,7 @@ export class AddMenuComponent implements OnInit{
         this.menuAdded.emit();
         this.clearForm()
       });
+      console.log('Form Submitted', formData);
     } else {
       console.log('Form is invalid or no image selected');
     }

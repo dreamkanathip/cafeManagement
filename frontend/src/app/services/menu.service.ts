@@ -2,7 +2,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { menuType } from '../interfaces/menu.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +35,7 @@ export class MenuService implements OnInit{
     return this.http.post(`${this.apiUrl}/addMenu`, menu);
   }
   updateMenu(menu:any, id:string): Observable<any> {
+    console.log("service", menu)
     return this.http.put(`${this.apiUrl}/menuUpdate/${id}`, menu)
   }
 }

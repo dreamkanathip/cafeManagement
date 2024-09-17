@@ -21,7 +21,7 @@ router.post("/addMenu", upload.single('image'), MenuController.addMenu);
 router.get("/allMenu", MenuController.getMenu);
 router.get("/menu/:_id", MenuController.getMenu);
 router.delete("/menu/:_id", MenuController.deleteMenu)
-router.put("/menuUpdate/:_id", upload.single('image'), MenuController.updateMenu)
+router.put("/menuUpdate/:_id", MenuController.updateMenu)
 
 // Category
 router.get("/allCategory", CategoryController.getAllCategory)
