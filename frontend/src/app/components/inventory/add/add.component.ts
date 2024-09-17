@@ -52,10 +52,14 @@ export class AddMenuComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
-
+  clearForm() {
+    this.menuForm.reset();
+    this.imagePreview =''
+    this.selectedCategory = "Select Category"
+  }
   submit() {
     if (this.menuForm.valid && this.selectedFile) {
-      const formData = new FormData();
+       const formData = new FormData();
 
       formData.append('name', this.menuForm.get('name')?.value ?? '');
       formData.append('price', this.menuForm.get('price')?.value ?? '');
@@ -63,9 +67,10 @@ export class AddMenuComponent implements OnInit{
       formData.append('category', this.menuForm.get('category')?.value ?? '');
       formData.append('image', this.selectedFile);
       
-      this.menuService.addMenu(formData).subscribe((result) => {
-        Swal.fire('Success', 'Added successful!', 'success');
+      this.menuService.addMenu(formData).subscribe(async (result) => {
+        await Swal.fire('Success', 'Added successful!', 'success');
         this.menuAdded.emit();
+        this.clearForm()
       });
     } else {
       console.log('Form is invalid or no image selected');
