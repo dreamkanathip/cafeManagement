@@ -25,6 +25,7 @@ import { EditMenuComponent } from './components/inventory/edit/edit.component';
 import { AddMenuComponent } from './components/inventory/add/add.component';
 import { CategoryComponent } from './components/inventory/category/category.component';
 import { CartComponent } from './components/order/cart/cart.component';
+import { EditCategoryComponent } from './components/inventory/category/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CartComponent } from './components/order/cart/cart.component';
     AddMenuComponent,
     CategoryComponent,
     CartComponent,
+    EditCategoryComponent,
   ],
   imports: [
     BrowserModule,

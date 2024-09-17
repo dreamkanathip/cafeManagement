@@ -20,6 +20,10 @@ export class CategoryService implements OnInit{
     return this.http.get<any>(`${this.apiUrl}/allCategory`);
   }
 
+  getSomeCategory(id: string) : Observable<categoryType> {
+    return this.http.get<categoryType>(`${this.apiUrl}/category/${id}`);
+  }
+
   deleteCategoryById(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/category/${id}`)
   }

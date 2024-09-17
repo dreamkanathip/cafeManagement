@@ -1,8 +1,9 @@
 
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { categoryType } from '../../../interfaces/category.model';
-import { FormControl } from '@angular/forms';
+import { CategoryService } from '../../../services/category.service';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,12 +14,15 @@ import Swal from 'sweetalert2';
 export class CategoryComponent implements OnInit{
 
   @Output() categoryAdded = new EventEmitter<void>();
+  editCategory!: string;
 
   categories: categoryType[] = []
 
-  categoryAdd = new FormControl('')
+  categoryForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  })
 
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService, private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.menuService.getAllCategory().subscribe(result => {
@@ -27,16 +31,39 @@ export class CategoryComponent implements OnInit{
     })
   }
 
+  updateCategoryById(id:string) {
+    this.editCategory = id;
+  }
+  
+  loadCategoryItems() {
+    console.log("loaded")
+    this.menuService.getAllCategory().subscribe((result) => {
+        this.categories = result;
+    });
+  }
+
+  onCategoryEdit() {
+    this.loadCategoryItems()
+  }
+
+  deleteMenuById(id: string) {
+    this.categoryService.deleteCategoryById(id).subscribe(result => {
+      this.categories = this.categories.filter((item: categoryType) => item._id !== id);
+    }, error => {
+      console.error('Error deleting menu item', error);
+    });
+  }
+
   submit(){
-    const categoryName = this.categoryAdd.value
-    if (categoryName) {
-      const newCategory : categoryType = {
-        categoryName : categoryName
-      }
-      // this.categoryService.addCategory(newCategory).subscribe((result) => {
-      //   console.log('Category added:', result);
-      //   Swal.fire('Success','Added Successfully')
-      // });
+    if (this.categoryForm) {
+      const newCategory = new FormData;
+
+      newCategory.append('name', this.categoryForm.get('name')?.value ?? '');
+
+      this.categoryService.addCategory(newCategory).subscribe((result) => {
+        console.log('Category added:', result);
+        Swal.fire('Success','Added Successfully')
+      });
     } else {
       console.log('Category Name is invalid or Already Exist');
     }
