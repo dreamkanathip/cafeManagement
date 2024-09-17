@@ -13,11 +13,11 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>
-                  <button class="btn btn-primary add-menu-btn" data-toggle="modal" data-target="#add-menu-modal" (click)="test()">
+                  <button type="button" class="btn btn-primary add-menu-btn" data-bs-toggle="modal" data-bs-target="#add-menu-modal">
                     <i class="fas fa-plus"></i>Add menu</button>
                 </th>
                 <th>
-                  <button class="btn btn-primary add-menu-btn" data-toggle="modal" data-target="#add-category-modal">
+                  <button class="btn btn-primary add-menu-btn" data-bs-toggle="modal" data-bs-target="#add-category-modal">
                     <i class="fas fa-plus"></i>Add category</button>
                 </th>
               </tr>
@@ -30,7 +30,7 @@
                 </td>
                 <td>{{item.name}}</td>
                 <td>
-                  <button class="edit-menu-btn btn btn-warning" data-toggle="modal" data-target="#edit-menu-modal">
+                  <button class="edit-menu-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-menu-modal" (click)="updateMenuById(item._id)">
                     update
                   </button>
                 </td>
@@ -55,4 +55,3 @@
 <app-add class="modal fade" id="add-menu-modal" (menuAdded)="onMenuAdded()"></app-add>
 <app-edit class="modal fade" id="edit-menu-modal" (menuEdit)="onMenuEdit()" [updateId]="updateId"></app-edit>
 <app-category class="modal fade" id="add-category-modal"></app-category>
-

@@ -14,7 +14,7 @@ export class AddMenuComponent implements OnInit{
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = null;
   selectedFile: File | null = null; // Store the file here
-  dropdownOpen: boolean = false;
+  
 
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -31,10 +31,6 @@ export class AddMenuComponent implements OnInit{
   }
 
   ngOnInit(): void {}
-
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
 
   selectCategory(i: number) {
     this.selectedCategory = this.category[i].category
@@ -56,28 +52,21 @@ export class AddMenuComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
-  clearForm() {
-    this.menuForm.reset();
-    this.imagePreview =''
-    this.selectedCategory = "Select Category"
-  }
+
   submit() {
     if (this.menuForm.valid && this.selectedFile) {
-       const formData = new FormData();
+      const formData = new FormData();
 
       formData.append('name', this.menuForm.get('name')?.value ?? '');
       formData.append('price', this.menuForm.get('price')?.value ?? '');
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
-      
       formData.append('image', this.selectedFile);
       
-      this.menuService.addMenu(formData).subscribe(async (result) => {
-        await Swal.fire('Success', 'Added successful!', 'success');
+      this.menuService.addMenu(formData).subscribe((result) => {
+        Swal.fire('Success', 'Added successful!', 'success');
         this.menuAdded.emit();
-        this.clearForm()
       });
-      console.log('Form Submitted', formData);
     } else {
       console.log('Form is invalid or no image selected');
     }

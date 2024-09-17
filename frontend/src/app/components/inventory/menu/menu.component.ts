@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { menuType } from '../../../interfaces/menu.model';
 
-declare var $: any;
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-menu',
@@ -30,10 +30,7 @@ export class MenuComponent implements OnInit{
       console.error('Error deleting menu item', error);
     });
   }
-  test() {
-    console.log("add menu")
-    $('#add-menu-modal').modal('show');
-  }
+
   updateMenuById(id:string) {
     this.updateId = id;
   }
