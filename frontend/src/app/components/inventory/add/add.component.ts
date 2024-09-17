@@ -56,18 +56,17 @@ export class AddMenuComponent implements OnInit{
   submit() {
     if (this.menuForm.valid && this.selectedFile) {
       const formData = new FormData();
+
       formData.append('name', this.menuForm.get('name')?.value ?? '');
       formData.append('price', this.menuForm.get('price')?.value ?? '');
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
-      
       formData.append('image', this.selectedFile);
+      
       this.menuService.addMenu(formData).subscribe((result) => {
-        console.log('Post response:', result);
         Swal.fire('Success', 'Added successful!', 'success');
         this.menuAdded.emit();
       });
-      console.log('Form Submitted', formData);
     } else {
       console.log('Form is invalid or no image selected');
     }
