@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { menuType } from '../interfaces/menu.model';
 import { MenuService } from './menu.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-
+  apiUrl = "http://localhost:5000/api"
   // fix Filter และ Menu
 
   filters = ['All', 'Drinks', 'Desserts', 'Others'];
@@ -25,8 +27,7 @@ export class OrderService {
   cartCounter: number = 0
   sumPrice: number = 0
   cart: menuType[] = []
-
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService, private http: HttpClient) {}
 
   add(menuID: number) {
     console.log('Add product to cart');
@@ -45,6 +46,9 @@ export class OrderService {
     this.cartCounter += 1;
   }
 
+  getAllMenu(): Observable<menuType[]> {
+    return this.http.get<menuType[]>(`${this.apiUrl}/allMenu`);
+  }
   getCounter(){
     return this.cartCounter
   }

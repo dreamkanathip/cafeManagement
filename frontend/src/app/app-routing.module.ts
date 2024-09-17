@@ -9,17 +9,19 @@ import { MenuComponent } from './components/inventory/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
 import { EditMenuComponent } from './components/inventory/edit/edit.component';
 import { AddMenuComponent } from './components/inventory/add/add.component';
+import { CategoryComponent } from './components/inventory/category/category.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: '', redirectTo: '/order', pathMatch: 'full' },
   { path: 'inventory', component: InventoryComponent },
   { path: 'inventory/manage-menu', component: MenuComponent },
   { path: 'inventory/manage-menu/edit', component: EditMenuComponent },
   { path: 'inventory/manage-menu/add', component: AddMenuComponent },
   { path: 'inventory/manage-ingredient', component: IngerdientComponent },
+  { path: 'inventory/manage-menu/addCategory', component: CategoryComponent},
   { path: 'order', component: OrderComponent },
 ];
 @NgModule({

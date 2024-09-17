@@ -1,32 +1,59 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../services/order.service';
+import { menuType } from '../../interfaces/menu.model';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
-export class OrderComponent implements OnInit{
+export class OrderComponent implements OnInit {
+
+  cart: menuType[] = []
 
   // fix Filter และ Menu
 
   filters = ['All', 'Drinks', 'Desserts', 'Others'];
 
-  menu: any = [
-    { "name": "Latte", "category": "Drinks" },
-    { "name": "Mocha", "category": "Drinks" },
-    { "name": "Cappuccino", "category": "Drinks" },
-    { "name": "Espresso", "category": "Drinks" },
-    { "name": "Vanilla Cake", "category": "Desserts" },
-    { "name": "Mocha Cake", "category": "Desserts" },
-    { "name": "Cocoa Cake", "category": "Desserts" },
-    { "name": "Other", "category": "Others" },
+  menu: menuType[] = [
+    { "_id": "1", "name": "Latte", "price": 60, "category": "Drinks", "description": "", "image":"" },
+    { "_id": "2", "name": "Mocha", "price": 60, "category": "Drinks", "description": "", "image":"" },
+    { "_id": "3", "name": "Cappuccino", "price": 60, "category": "Drinks", "description": "", "image":"" },
+    { "_id": "4", "name": "Espresso", "price": 60, "category": "Drinks", "description": "", "image":"" },
+    { "_id": "5", "name": "Vanilla Cake", "price": 60, "category": "Desserts", "description": "", "image":"" },
+    { "_id": "6", "name": "Mocha Cake", "price": 60, "category": "Desserts", "description": "", "image":"" },
+    { "_id": "7", "name": "Cocoa Cake", "price": 60, "category": "Desserts", "description": "", "image":"" },
+    { "_id": "8", "name": "Other", "price": 60, "category": "Others", "description": "", "image":"" },
   ]
+
+  getsomeMenu(id: string){
+    return this.menu.find(item => item._id === id)
+  }
+
+  //
 
   currentFilter = 'all';
 
-  constructor() { }
+  constructor(private orderService: OrderService) {
+    this.cart = this.orderService.getCart()
+    // this.orderService.getAllMenu().subscribe(result => {
+    //   this.menu = result
+    // })
+  }
 
   ngOnInit(): void { }
+
+  getCounter() {
+    return this.orderService.getCounter();
+  }
+
+  addToCart(menuID: number) {
+    this.orderService.add(menuID)
+  }
+
+  getSumPrice() {
+    return this.orderService.getSumPrice()
+  }
 
   filterMenu(category: string) {
     this.currentFilter = category.toLowerCase();
@@ -35,4 +62,5 @@ export class OrderComponent implements OnInit{
   isItemVisible(category: string): boolean {
     return this.currentFilter === 'all' || category.toLowerCase() === this.currentFilter;
   }
+
 }

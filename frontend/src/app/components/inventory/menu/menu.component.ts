@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { menuType } from '../../../interfaces/menu.model';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-menu',
@@ -21,9 +23,6 @@ export class MenuComponent implements OnInit{
     })
   }
   
-  ngOnInit(): void {
-  }
-
   deleteMenuById(id: string) {
     this.menuService.deleteMenuById(id).subscribe(result => {
       this.menuItems = this.menuItems.filter((item: menuType) => item._id !== id);
@@ -31,6 +30,7 @@ export class MenuComponent implements OnInit{
       console.error('Error deleting menu item', error);
     });
   }
+
 
   updateMenuById(id:string) {
     this.updateId = id;
@@ -48,5 +48,8 @@ export class MenuComponent implements OnInit{
   }
   onMenuEdit() {
     this.loadMenuItems()
+  }
+
+  ngOnInit(): void {
   }
 }

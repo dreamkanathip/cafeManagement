@@ -17,6 +17,10 @@
                   <button class="btn btn-primary add-menu-btn" data-toggle="modal" data-target="#add-menu-modal">
                     <i class="fas fa-plus"></i>Add menu</button>
                 </th>
+                <th>
+                  <button class="btn btn-primary add-menu-btn" data-toggle="modal" data-target="#add-category-modal">
+                    <i class="fas fa-plus"></i>Add category</button>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -48,5 +52,8 @@
   </video>
 </div>
 
+
 <app-add class="modal fade" id="add-menu-modal" (menuAdded)="onMenuAdded()"></app-add>
 <app-edit class="modal fade" id="edit-menu-modal" (menuEdit)="onMenuEdit()" [updateId]="updateId"></app-edit>
+<app-category class="modal fade" id="add-category-modal"></app-category>
+
