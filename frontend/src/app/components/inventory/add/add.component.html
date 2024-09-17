@@ -14,7 +14,7 @@
               <div class="form-group">
                 <h5>Image</h5>
                 <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-preview mt-2 img" />
-                <input type="file" class="form-control-file" (change)="onImageChange($event)" formControlName="image" />
+                <input type="file" class="form-control-file" (change)="onImageChange($event)" />
               </div>
             </div>
             <div class="col-md-8 ml-auto">
@@ -52,9 +52,11 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer form-group">
+          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </div>
         </form>
       </div>

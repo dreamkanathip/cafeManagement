@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -13,8 +13,9 @@ export class AddMenuComponent implements OnInit{
   category!: any
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = null;
-  selectedFile: File | null = null;
+  selectedFile: File | null = null; // Store the file here
   
+
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl(''),
@@ -22,7 +23,6 @@ export class AddMenuComponent implements OnInit{
     category: new FormControl(''),
     image: new FormControl('')
   })
-
   constructor(private menuService: MenuService) {
     this.menuService.getAllCategory().subscribe(result => {
       this.category = result;
@@ -44,6 +44,7 @@ export class AddMenuComponent implements OnInit{
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
+      this.selectedFile = file; // Store the file
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;
@@ -60,10 +61,7 @@ export class AddMenuComponent implements OnInit{
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
       
-      // Append the file as 'image'
       formData.append('image', this.selectedFile);
-
-      // Send formData to the server
       this.menuService.addMenu(formData).subscribe((result) => {
         console.log('Post response:', result);
         Swal.fire('Success', 'Added successful!', 'success');
@@ -74,5 +72,4 @@ export class AddMenuComponent implements OnInit{
       console.log('Form is invalid or no image selected');
     }
   }
-
 }

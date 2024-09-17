@@ -12,7 +12,6 @@
                 <th>No.</th>
                 <th>Image</th>
                 <th>Name</th>
-                <th></th>
                 <th>
                   <button class="btn btn-primary add-menu-btn" data-toggle="modal" data-target="#add-menu-modal">
                     <i class="fas fa-plus"></i>Add menu</button>
@@ -32,12 +31,12 @@
                 <td>{{item.name}}</td>
                 <td>
                   <button class="edit-menu-btn btn btn-warning" data-toggle="modal" data-target="#edit-menu-modal" (click)="updateMenuById(item._id)">
-                    update menu
+                    update
                   </button>
                 </td>
                 <td>
                   <button class="edit-menu-btn btn btn-danger" (click)="deleteMenuById(item._id)">
-                    delete menu
+                    delete
                   </button>
                 </td>
               </tr>
