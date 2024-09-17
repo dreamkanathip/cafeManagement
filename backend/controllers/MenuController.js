@@ -63,24 +63,24 @@ const deleteMenu = async(req, res) => {
 const updateMenu = async(req, res) => {
   try {
     const { _id } = req.params;
-    const { name, price, description, category, imageBase64} = req.body;
-    if (req.file) {
-      imageBase64 = req.file.buffer.toString('base64');
-    }
+    const { name, price, description, category} = req.body;
     const payload = {
       name,
       price,
       description,
       category,
-      image: imageBase64
     }
-    
+    if (req.file) {
+      const imageBase64 = req.file.buffer.toString('base64');
+      payload.image = imageBase64;
+    }
+    console.log(payload)
     const result = await Menu.findOneAndReplace({_id:_id}, payload);
     
-    if (!result) {
+    if (result.modifiedCount === 0) {
       return res.status(404).json({ message: "Menu item not found" });
     }
-    res.status(200).json({ message: "Menu item update successfully", payload: result });
+    res.status(200).json({ message: "Menu item update successfully"});
   } catch (err) {
     console.error("Error update menu item:", err);
     res.status(500).send({ message: "Internal server error" });
