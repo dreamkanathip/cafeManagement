@@ -12,7 +12,7 @@ export class AddMenuComponent implements OnInit{
   @Output() menuAdded = new EventEmitter<void>();
   category!: any
   selectedCategory: string = "Select Category"
-  imagePreview: string | ArrayBuffer | null = null;
+  imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
   
 
@@ -52,11 +52,13 @@ export class AddMenuComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
+
   clearForm() {
     this.menuForm.reset();
-    this.imagePreview =''
+    this.imagePreview ="/assets/placeholder.jpg"
     this.selectedCategory = "Select Category"
   }
+
   submit() {
     if (this.menuForm.valid && this.selectedFile) {
       const formData = new FormData();
@@ -66,14 +68,34 @@ export class AddMenuComponent implements OnInit{
       formData.append('description', this.menuForm.get('description')?.value ?? '');
       formData.append('category', this.menuForm.get('category')?.value ?? '');
       formData.append('image', this.selectedFile);
-      
-      this.menuService.addMenu(formData).subscribe((result) => {
-        Swal.fire('Success', 'Added successful!', 'success');
-        this.menuAdded.emit();
-        this.clearForm()
+    
+      Swal.fire({
+        title: "Do you want to save the changes?",
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        icon: "warning",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.menuService.addMenu(formData).subscribe((result) => {
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Menu work has been saved",
+              showConfirmButton: true,
+            });
+            this.menuAdded.emit();
+            this.clearForm()
+          });
+        }
       });
     } else {
-      console.log('Form is invalid or no image selected');
+      console.log('Please complete the form');
+      Swal.fire({
+        icon: "error",
+        title: "error",
+        text: "Please complete the form",
+        showConfirmButton: true,
+      });
     }
   }
 }

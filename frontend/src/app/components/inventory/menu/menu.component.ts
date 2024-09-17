@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { menuType } from '../../../interfaces/menu.model';
+import Swal from 'sweetalert2';
 
 declare var bootstrap: any;
 
@@ -24,10 +25,27 @@ export class MenuComponent implements OnInit{
   }
   
   deleteMenuById(id: string) {
-    this.menuService.deleteMenuById(id).subscribe(result => {
-      this.menuItems = this.menuItems.filter((item: menuType) => item._id !== id);
-    }, error => {
-      console.error('Error deleting menu item', error);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.menuService.deleteMenuById(id).subscribe(result => {
+          this.menuItems = this.menuItems.filter((item: menuType) => item._id !== id);
+        }, error => {
+          console.error('Error deleting menu item', error);
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
     });
   }
 

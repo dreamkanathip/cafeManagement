@@ -24,11 +24,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of menuItems; index as i">
-                <td>{{i+1}}</td>
+                <td class="menu-name">{{i+1}}</td>
                 <td>
                   <img src="data:image/jpeg;base64,{{item.image}}" alt="Menu Item Image" class="img"/>
                 </td>
-                <td>{{item.name}}</td>
+                <td class="menu-name">{{item.name}}</td>
                 <td>
                   <button class="edit-menu-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-menu-modal" (click)="updateMenuById(item._id)">
                     update

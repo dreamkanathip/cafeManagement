@@ -13,7 +13,7 @@ export class EditMenuComponent implements OnInit{
   @Input() updateId!: string;
   category!: any
   selectedCategory: string = "Select Category"
-  imagePreview: string | ArrayBuffer | null = null;
+  imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
   id!: string
   
@@ -54,7 +54,12 @@ export class EditMenuComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
-
+  clearForm() {
+    this.menuForm.reset();
+    this.imagePreview ="/assets/placeholder.jpg"
+    this.selectedCategory = "Select Category"
+  }
+  
   submit() {
     if (this.selectedFile) {
       const formData = new FormData();
