@@ -9,10 +9,13 @@
 
                         <h1>Cafe Menu</h1>
                         <ul class="ul">
+                            <li (click)="filterAll()">
+                                All
+                            </li>
                             <li *ngFor="let filter of filters" 
                                 (click)="filterMenu(filter)"
-                                [class.current]="currentFilter === filter">
-                                {{ filter }}
+                                [class.current]="currentFilter === filter.categoryName">
+                                {{ filter.categoryName }}
                             </li>
                             <div data-bs-toggle="modal" data-bs-target="#cart-modal">
                                 <button class="fa fa-cart-plus" role="button">{{getCounter()}}</button>
@@ -49,5 +52,4 @@
         Your browser does not support the video tag.
     </video>
 </div>
-
 

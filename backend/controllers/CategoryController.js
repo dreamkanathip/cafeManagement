@@ -2,16 +2,17 @@ const Category = require("../models/category")
 
 const addCategory = async (req, res) => {
     try {
-        const { category } = req.body
-        const categorydb = await Category.findOne({ categoryName: category })
-        if (categorydb) return res.status(404).send({ message: "Category Already Exist" });
-
+        const { categoryName } = req.body
+        const categorydb = await Category.findOne({ categoryName: categoryName })
+        if (categorydb) {
+          return res.status(404).send({ message: "Category already exist"});
+        }
         const newCategory = new Category ({
-            category
+            categoryName
         })
 
         const result = await newCategory.save();
-        res.status(201).json({ message: "Category Added", newCategory: result });
+        res.status(201).json({ message: "Category Added", result: newCategory });
     } catch (err) {
         console.error("Error Occured:", err);
         res.status(500).send({ message: "Internal server error" });
@@ -59,13 +60,14 @@ const deleteCategory = async(req, res) => {
 const updateCategory = async(req, res) => {
     try {
       const { _id } = req.params;
-      const { category } = req.body;
+      const { categoryName } = req.body;
       const payload = {
-        category,
+        categoryName,
       }
 
       console.log(payload)
-      const result = await Category.findOneAndReplace({_id:_id}, payload);
+      const result = await Category.findOneAndUpdate(req.params.id, req.body, {
+        new: true,});
       
       if (result.modifiedCount === 0) {
         return res.status(404).json({ message: "Category item not found" });
