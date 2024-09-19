@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit{
   categories: categoryType[] = []
 
   categoryForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    categoryName: new FormControl('', [Validators.required]),
   })
 
   constructor(private menuService: MenuService, 
@@ -40,7 +40,7 @@ export class CategoryComponent implements OnInit{
   }
 
   setUpdateValue(id: string) {
-    this.editCategoryComponent.getRecentCategory(id)
+    this.editCategoryComponent.getRecentCategory(id);
   }
   
   loadCategoryItems() {
@@ -76,6 +76,7 @@ export class CategoryComponent implements OnInit{
 
   submit() {
     if (this.categoryForm.valid) {
+      console.log(this.categoryForm)
       const newCategory: any = {
         categoryName: this.categoryForm.get('categoryName')?.value ?? ''
       };

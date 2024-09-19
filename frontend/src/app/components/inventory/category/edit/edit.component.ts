@@ -26,6 +26,10 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit() {}
 
+  clearForm(){
+    this.categoryForm.reset()
+  }
+
   getRecentCategory(id: any) {
     this.updateId = id;
     this.categoryService.getSomeCategory(id).subscribe((result) => {
