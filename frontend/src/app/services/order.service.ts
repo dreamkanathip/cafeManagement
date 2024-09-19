@@ -3,6 +3,8 @@ import { menuType } from '../interfaces/menu.model';
 import { MenuService } from './menu.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CategoryService } from './category.service';
+import { categoryType } from '../interfaces/category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,36 +13,29 @@ export class OrderService {
   apiUrl = "http://localhost:5000/api"
   // fix Filter และ Menu
 
-  filters = ['All', 'Drinks', 'Desserts', 'Others'];
+  filters = [];
 
-  menu: menuType[] = [
-    { "_id": "1", "name": "Latte", "price": 60, "category": "Drinks", "description": "", "image":"" },
-    { "_id": "2", "name": "Mocha", "price": 60, "category": "Drinks", "description": "", "image":"" },
-    { "_id": "3", "name": "Cappuccino", "price": 60, "category": "Drinks", "description": "", "image":"" },
-    { "_id": "4", "name": "Espresso", "price": 60, "category": "Drinks", "description": "", "image":"" },
-    { "_id": "5", "name": "Vanilla Cake", "price": 60, "category": "Desserts", "description": "", "image":"" },
-    { "_id": "6", "name": "Mocha Cake", "price": 60, "category": "Desserts", "description": "", "image":"" },
-    { "_id": "7", "name": "Cocoa Cake", "price": 60, "category": "Desserts", "description": "", "image":"" },
-    { "_id": "8", "name": "Other", "price": 60, "category": "Others", "description": "", "image":"" },
-  ]
+  menu: menuType[] = []
 
   cartCounter: number = 0
   sumPrice: number = 0
   cart: menuType[] = []
-  constructor(private menuService: MenuService, private http: HttpClient) {}
+  constructor(
+    private menuService: MenuService,
+    private categoryService: CategoryService,
+    private http: HttpClient
+  ) {
+    this.menuService.getAllMenu().subscribe(result => {
+      this.menu = result.sort((a: menuType, b: menuType) => a.name.localeCompare(b.name));
+    })
+    this.categoryService.getAllCategory().subscribe(result => {
+      this.filters = result.sort((a: categoryType, b: categoryType) => a.categoryName.localeCompare(b.categoryName));
+      console.log('Categories received.')
+    })
+  }
 
   add(menuID: number) {
     console.log('Add product to cart');
-    
-    // this.menuService.getSomeMenu(menuID).subscribe(menuItem => {
-    //   this.cart.push(menuItem);
-    //   this.sumPrice += menuItem.price
-    //   this.cartCounter += 1;
-    //   console.log(`Menu item added to cart: ${menuItem}`);
-    // }, error => {
-    //   console.error('Error adding menu item to cart:', error);
-    // });
-
     this.cart.push(this.menu[menuID])
     this.sumPrice += this.menu[menuID].price
     this.cartCounter += 1;
@@ -59,6 +54,28 @@ export class OrderService {
 
   getCart() {
     return this.cart
+  }
+
+  getMenu() {
+    return this.menu
+  }
+
+  getCategory(){
+    return this.filters
+  }
+
+  updateCart(updatedCart: menuType[]) {
+    this.cart = updatedCart;
+
+    let newSum: number = 0
+    let newCount: number = 0
+
+    this.cart.forEach((item) => {
+      newSum += item.price
+      newCount += 1
+    })
+    this.sumPrice = newSum
+    this.cartCounter = newCount
   }
 
 }
