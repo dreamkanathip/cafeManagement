@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { categoryType } from '../../../interfaces/category.model';
 
 @Component({
   selector: 'app-add',
@@ -33,7 +34,7 @@ export class AddMenuComponent implements OnInit{
   ngOnInit(): void {}
 
   selectCategory(i: number) {
-    this.selectedCategory = this.category[i].category
+    this.selectedCategory = this.category[i].categoryName
     this.menuForm.get('category')?.setValue(this.selectedCategory);
   }
 
