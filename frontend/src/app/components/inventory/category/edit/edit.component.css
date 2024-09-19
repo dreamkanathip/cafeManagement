@@ -1,0 +1,137 @@
+.main-video {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-video video {
+  position: fixed;
+  z-index: -9;
+  object-fit: cover;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  object-fit: cover; /* Ensures video covers the entire container */
+  z-index: -1;
+}
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+}
+
+.menu-text {
+    justify-content: left; /* Center horizontally */
+    align-items: top; /* Center vertically */
+    position: sticky; /* Fixes the "Menu" text at the top */
+    top: 0;
+    background-color: rgb(237, 232, 232);
+    z-index: 100;
+    padding: 10px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+thead {
+  position:sticky; /* Makes the table header sticky */
+  top: 40px; /* Adjust the value depending on the height of your menu header */
+  background-color: rgb(237, 232, 232);
+  /* z-index: 99; */
+}
+.menu-container {
+    border-radius: 10px;
+    transition: 0.3s;
+    display: flex;
+    width: 100%; /* ใช้ความกว้างเต็มของ wrapper */
+    max-width: 100%; /* จำกัดความกว้างสูงสุดให้ไม่เกินขนาดของ wrapper */
+    padding: 20px; /* เพิ่ม padding สำหรับ container */
+    box-sizing: border-box; /* รวม padding และ border ไว้ในขนาดของกล่อง */
+    background: rgb(237, 232, 232);
+    margin: 1%;
+  }
+  .menu-list {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    max-height: 500px;
+  }
+
+  .add-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .add-menu-btn i {
+    margin-right: 5px;
+  }
+  .edit-menu-btn {
+    width: 100px;
+    /* height: 100%; */
+  }
+  .modal {
+    display: none; /* Hidden by default */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+  }
+  td{
+    height: 100px;
+  }
+  .input {
+    height: 45px; /* ความสูงของ input */
+    width: 90%; /* ใช้ความกว้างเต็มของ input-field */
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    color: #40414a;
+    box-sizing: border-box; /* รวม padding และ border ไว้ในขนาดของ input */
+    margin-left: 5%;
+    margin-bottom: 5%;
+    font-size: large;
+  }
+
+  .input-box .input-field label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #aaa; /* สีของ label ในตอนเริ่มต้น */
+  }
+
+
+  .input-field .input:focus,
+  .input-field .input {
+    border-bottom: 1px solid #009970; /* สีของขอบเมื่อมีการโฟกัส */
+  }
+  .pic {
+    /* background: pink; */
+    border: 10px #009970;
+    border-radius: 12px;
+    margin-left: 5%;
+    /* margin-left: 5%; */
+  }
+
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+

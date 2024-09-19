@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  showPassword = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,5 +55,8 @@ export class LoginComponent implements OnInit {
           }
         );
     }
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
