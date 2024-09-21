@@ -134,5 +134,8 @@
       user-select: none;
     }
 
+    .delete-column {
+      margin-left: 5%;
+    }
   
   
