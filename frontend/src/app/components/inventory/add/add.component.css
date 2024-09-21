@@ -185,6 +185,9 @@
     .form-control-file {
       display: none;
     }
+    .dropdown-menu {
+      cursor: pointer;
+    }
 
 
   

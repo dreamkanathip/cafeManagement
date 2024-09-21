@@ -16,7 +16,6 @@ export class AddMenuComponent implements OnInit{
   imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
   
-
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl(''),
@@ -32,7 +31,9 @@ export class AddMenuComponent implements OnInit{
   }
 
   ngOnInit(): void {}
-
+  get name() {
+    return this.menuForm.get('name');
+  }
   selectCategory(i: number) {
     this.selectedCategory = this.category[i].categoryName
     this.menuForm.get('category')?.setValue(this.selectedCategory);
