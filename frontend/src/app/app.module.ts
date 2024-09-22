@@ -26,9 +26,9 @@ import { AddMenuComponent } from './components/inventory/add/add.component';
 import { CategoryComponent } from './components/inventory/category/category.component';
 import { CartComponent } from './components/order/cart/cart.component';
 import { EditCategoryComponent } from './components/inventory/category/edit/edit.component';
+import { ValidateDirective } from './directive/validate.directive';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ModalComponent } from './components/modal/modal.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,9 +45,9 @@ import { ModalComponent } from './components/modal/modal.component';
     CategoryComponent,
     CartComponent,
     EditCategoryComponent,
+    ValidateDirective,
     PaymentComponent,
     ModalComponent,
-  
   ],
   imports: [
     BrowserModule,

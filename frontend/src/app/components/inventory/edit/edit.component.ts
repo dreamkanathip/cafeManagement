@@ -21,10 +21,10 @@ export class EditMenuComponent implements OnInit {
 
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    price: new FormControl(''),
-    description: new FormControl(''),
-    category: new FormControl(''),
-    image: new FormControl('')
+    price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    description: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required])
   })
 
   constructor(private menuService: MenuService) {
@@ -36,7 +36,7 @@ export class EditMenuComponent implements OnInit {
   ngOnInit(): void { }
 
   selectCategory(i: number) {
-    this.selectedCategory = this.category[i].category
+    this.selectedCategory = this.category[i].categoryName
     this.menuForm.get('category')?.setValue(this.selectedCategory);
   }
 
