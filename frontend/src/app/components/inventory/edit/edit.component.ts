@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
-import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
