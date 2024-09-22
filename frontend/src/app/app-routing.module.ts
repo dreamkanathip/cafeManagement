@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'inventory/manage-menu/edit', component: EditMenuComponent },
   { path: 'inventory/manage-menu/add', component: AddMenuComponent },
   { path: 'inventory/manage-ingredient', component: IngerdientComponent },
-  { path: 'inventory/manage-menu/addCategory', component: CategoryComponent},
+  { path: 'inventory/manage-menu/addCategory', component: CategoryComponent },
   { path: 'order', component: OrderComponent },
   { path: 'payment', component: PaymentComponent},
 ];

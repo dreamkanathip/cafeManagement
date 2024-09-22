@@ -1,4 +1,10 @@
-<link rel="stylesheet" href="login.component.css" />
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <link rel="stylesheet" href="login.component.css" />
+</head>
 <body>
   <div class="ext-box">
     <div class="wrapper">
@@ -24,12 +30,17 @@
                   <div class="input-field">
                     <input
                       formControlName="password"
-                      type="password"
+                      [type]="showPassword ? 'text' : 'password'"
                       class="input"
                       id="login-password"
                       required
                     />
                     <label for="password">Password</label>
+                    <i
+                      class="fa fa-eye password-toggle"
+                      [class.fa-eye-slash]="showPassword"
+                      (click)="togglePasswordVisibility()"
+                    ></i>
                   </div>
                   <div class="input-field">
                     <button type="submit" class="submit">Sign In</button>

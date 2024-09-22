@@ -12,7 +12,7 @@ import { emailDomainValidator } from '../../validators/email'; // นำเข�
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
-
+  showPassword: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -83,5 +83,8 @@ export class RegisterComponent implements OnInit {
           }
         }
       );
+  }
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

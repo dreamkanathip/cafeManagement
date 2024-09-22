@@ -7,19 +7,21 @@ body {
   background-position: center; /* จัดตำแหน่งภาพให้อยู่ตรงกลาง */
   background-repeat: no-repeat; /* ป้องกันการทำซ้ำของภาพพื้นหลัง */
   overflow: hidden;
+  position: relative; /* เพิ่มตำแหน่งให้กับ body เพื่อให้ ::before ทำงานได้ */
 }
+
 body::before {
   content: "";
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image: url("../../../assets/login-background.png");
-  position: absolute;
   background-size: cover; /* ทำให้ภาพพื้นหลังขยายเต็มพื้นที่ */
   background-position: center; /* จัดตำแหน่งภาพให้อยู่ตรงกลาง */
   background-repeat: no-repeat; /* ป้องกันการทำซ้ำของภาพพื้นหลัง */
-  filter: blur(10px); /* เบลอภาพพื้นหลัง */
+  filter: blur(10px); /* ปรับเบลอให้อยู่ในระดับที่พอดี */
   z-index: -1; /* ให้ภาพเบลออยู่ด้านหลังเนื้อหา */
 }
 
@@ -57,7 +59,7 @@ body::before {
 }
 
 .side-image {
-  background-image: url("https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url("../../../assets/login-background.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -206,4 +208,14 @@ span a:hover {
     max-width: 420px;
     width: 100%;
   }
+}
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.password-toggle:hover {
+  color: #333; /* เปลี่ยนสีเมื่อ hover */
 }

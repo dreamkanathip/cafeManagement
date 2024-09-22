@@ -11,35 +11,68 @@ import Swal from 'sweetalert2';
 })
 export class EditCategoryComponent implements OnInit {
 
-  @Output() menuEdit = new EventEmitter<void>();
-  @Input() updateId!: string;
+  @Output() categoriesEdit = new EventEmitter<void>();
+  updateId!: string;
   recentName!: string
+  
 
-  newCategoryName = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+  categoryForm = new FormGroup({
+    categoryName: new FormControl('', [Validators.required]),
   })
 
   constructor (private categoryService: CategoryService) {
-    this.categoryService.getSomeCategory(this.updateId).subscribe(result => {
-      this.recentName = result.categoryName;
-      console.log('Categories received.')
-    })
+    
   }
 
   ngOnInit() {}
 
-  submit(){
-    if (this.newCategoryName) {
-      const updateCategory = new FormData;
-
-      updateCategory.append('name', this.newCategoryName.get('name')?.value ?? '');
-      this.categoryService.updateCategory(updateCategory, this.updateId).subscribe((result) => {
-        Swal.fire('Success', 'Updated successful!', 'success');
-        this.menuEdit.emit();
-      });
-    } else {
-      console.log('Category Name is invalid or Already Exist');
-    }
+  clearForm(){
+    this.categoryForm.reset()
   }
+
+  getRecentCategory(id: any) {
+    this.updateId = id;
+    this.categoryService.getSomeCategory(id).subscribe((result) => {
+      this.categoryForm.patchValue({
+        categoryName: result.categoryName,
+      });
+    })
+  }
+
+submit() {
+  if (this.categoryForm.valid) {
+    const formData = new FormData();
+      formData.append('categoryName', this.categoryForm.get('categoryName')?.value ?? '');
+
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      icon: "warning",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.updateCategory(formData, this.updateId).subscribe((result) => {
+          console.log('Post response:', result);
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Category has been updated!",
+            showConfirmButton: true,
+          });
+          this.categoriesEdit.emit();
+          this.categoryForm.reset()
+        });
+      }
+    });
+  } else {
+    console.log('Please complete the form');
+    Swal.fire({
+      icon: "error",
+      title: "error",
+      text: "Please complete the form",
+      showConfirmButton: true,
+    });
+  }
+}
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import { menuType } from '../../../interfaces/menu.model';
 
@@ -11,6 +11,9 @@ export class CartComponent {
 
   cart: menuType[] = []
 
+  @Output() cartUpdate = new EventEmitter<menuType[]>();
+
+
   constructor(private orderService: OrderService) {
     this.cart = this.orderService.getCart()
   }
@@ -19,4 +22,9 @@ export class CartComponent {
     return this.orderService.getSumPrice()
   }
 
+  deleteCart(i: number){
+    this.cart.splice(i, 1)
+    this.cartUpdate.emit(this.cart);
+    this.orderService.updateCart(this.cart);
+  }
 }

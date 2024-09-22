@@ -262,3 +262,49 @@ input[type="radio"]#female:checked + .gender-option-label::before {
   background-color: #ff69b4; /* สีชมพูสำหรับ Female */
   border-color: #ff69b4;
 }
+/* Add this to your existing CSS */
+
+/* General container for the eye icon */
+.input-field {
+  position: relative;
+}
+
+/* Adjust the position of the eye icon */
+.input-field .fa-eye,
+.input-field .fa-eye-slash {
+  position: absolute;
+  right: 10px; /* Align it to the right of the input */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa; /* Default color for the eye icon */
+  transition: color 0.3s ease;
+}
+
+/* Eye icon hover effect */
+.input-field .fa-eye:hover,
+.input-field .fa-eye-slash:hover {
+  color: #5d5076; /* Change color on hover */
+}
+
+/* Move eye icon up along with label on focus or valid */
+.input-field .input:focus ~ i,
+.input-field .input:valid ~ i {
+  top: -10px;
+  font-size: 13px;
+  color: #5d5076; /* Color change */
+  transform: translateY(0); /* Adjust translation */
+}
+
+/* Handle error message and adjust spacing for eye icon */
+.input-field .input:focus:invalid ~ i,
+.input-field .input:invalid ~ i {
+  color: red; /* Change eye icon color to red on validation error */
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  top: 55px; /* Adjust position so it doesn't overlap the icon */
+}

@@ -1,3 +1,7 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
 <body>
   <div class="ext-box">
     <div class="wrapper">
@@ -50,21 +54,26 @@
                   <div class="input-field">
                     <input
                       formControlName="password"
-                      type="password"
+                      [type]="showPassword ? 'text' : 'password'"
                       class="input"
                       id="password"
                       required
                     />
                     <label for="password">Password</label>
+                    <i
+                      class="fa"
+                      [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                      (click)="togglePasswordVisibility()"
+                    ></i>
                     <div
                       *ngIf="
                         form.get('password')?.hasError('minlength') &&
                         form.get('password')?.touched
                       "
                     >
-                      <span class="error">
-                        Password must be at least 6 characters long.
-                      </span>
+                      <span class="error"
+                        >Password must be at least 6 characters long.</span
+                      >
                     </div>
                   </div>
                   <div class="gender-container">
