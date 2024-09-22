@@ -169,9 +169,7 @@ thead {
     display: block;
   }
   .cancel-btn {
-    /* background: #009970 */
     border-radius: 50px;
-    /* border-color: #009970; */
     display: block;
   }
   .upload-btn:hover{
@@ -185,7 +183,9 @@ thead {
   .form-control-file {
     display: none;
   }
-
+  .dropdown-menu {
+    cursor: pointer;
+  }
 
 
 
