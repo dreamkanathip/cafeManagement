@@ -1,0 +1,74 @@
+<!-- Cash Modal -->
+<div class="modal fade" id="cashModal" tabindex="-1" role="dialog" aria-labelledby="cashModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="cashModalLabel">Pay by <span style="color: #6064b6">Cash</span></h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Cash Form -->
+        <form>
+          <div class="form-group">
+            <h2 id="cashModalLabel">
+                Total : <span class="right-align" style="color: #6064b6">1000</span>
+            </h2>
+        </div>
+        <div class="form-group payment-form-group">
+            <label for="cashAmount" class="payment-label">
+                <h2 class="modal-title">Payment :</h2>
+            </label>
+            <input type="text" class="form-control" id="cashAmount" placeholder="Enter payment">
+        </div>
+        <div class="form-group">
+            <h2 id="cashModalLabel">
+                Change : <span class="right-align" style="color: #6064b6">1000</span>
+            </h2>
+        </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="cancel btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="cancel btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="paymentModalLabel">Pay by <span style="color: #6064b6">Promtpay</span></h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Promtpay Form -->
+        <form>
+          <div class="form-group">
+            <h2 id="cashModalLabel">
+                Total : <span class="right-align" style="color: #6064b6">1000</span>
+            </h2>
+        </div>
+          <div class="form-group">
+              <h2 class="modal-title" id="cashModalLabel" style="color: #00b383;">Scan QR code to pay</h2>
+          </div>
+          <div class="form-group">
+              <img src="../../../assets/promtpay.png" alt="PROMTPAY Payment" class="centered-image">
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="cancel btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="cancel btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

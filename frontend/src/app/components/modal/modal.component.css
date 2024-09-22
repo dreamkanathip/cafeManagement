@@ -1,0 +1,291 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container{
+    width: 800px;
+    border-radius: 8px;
+    padding: 100px;
+    background-color: white;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+                0 5px 12px -2px rgba(0, 0, 0, 0.1),
+                0 18px 36px -6px rgba(0, 0, 0, 0.1);
+}
+
+.container .title{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container form input{
+    display: none;
+}
+
+.container form .category{
+    margin-top: 10px;
+    padding-top: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+
+.category label{
+    /* width: 100%; */
+    /* height: 65px; */
+    height: 145px;
+    padding: 20px;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+}
+
+#visa:checked ~ .category .visaMethod,
+#mastercard:checked ~ .category .mastercardMethod,
+#paypal:checked ~ .category .paypalMethod,
+#AMEX:checked ~ .category .amexMethod{
+    box-shadow: 0px 0px 0px 1px #6064b6;
+}
+
+
+#visa:checked ~ .category .visaMethod .check,
+#mastercard:checked ~ .category .mastercardMethod .check,
+#paypal:checked ~ .category .paypalMethod .check,
+#AMEX:checked ~ .category .amexMethod .check{
+    display: block;
+}
+
+
+label .imgName{
+    display: flex;
+    /* justify-content: space-between;
+     */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.imgName span{
+    /* margin-left: 20px; */
+    font-family: Arial, Helvetica, sans-serif;
+
+    position: absolute;
+    top: 100%;
+    transform: translateY(-100%);
+}
+
+.imgName .imgContainer{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 40%;
+    transform: translateY(-35%);
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+.check{
+    display: none;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+.check i{
+    font-size: 18px;
+}
+
+body::before {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/paymentBG.jpg"); 
+    position: absolute;
+    background-size: cover; /* ทำให้ภาพพื้นหลังขยายเต็มพื้นที่ */
+    background-position: center; /* จัดตำแหน่งภาพให้อยู่ตรงกลาง */
+    background-repeat: no-repeat; /* ป้องกันการทำซ้ำของภาพพื้นหลัง */
+    filter: blur(2px); /* เบลอภาพพื้นหลัง */
+    z-index: -1; /* ให้ภาพเบลออยู่ด้านหลังเนื้อหา */
+  }
+
+  body {
+    /* background-image: url(""); */
+    background-size: cover; /* ทำให้ภาพพื้นหลังขยายเต็มพื้นที่ */
+    background-position: center; /* จัดตำแหน่งภาพให้อยู่ตรงกลาง */
+    background-repeat: no-repeat; /* ป้องกันการทำซ้ำของภาพพื้นหลัง */
+    overflow: hidden;
+  }
+
+  .cancel {
+    background-color: #00b383;
+    border: 1px solid #00b383;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  .cancel:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (min-width: 768px) {
+    .cancel {
+    padding: 10px 30px;
+    align-items: center;
+    justify-content: center;
+    }
+  }
+  /* จัดตำแหน่ง modal ให้อยู่กลางหน้าจอ */
+/* จัดตำแหน่ง modal ให้อยู่กลางหน้าจอ */
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100% - 1rem); /* ปรับขนาดตามต้องการ */
+    margin: 1.75rem auto; /* ปรับให้เหมาะสมกับขนาดของ modal */
+  }
+  
+  /* ปรับขนาดของ modal-content */
+  .modal-content {
+    width: 100%;
+    max-width: 800px; /* ขนาดที่ต้องการ */
+    margin: auto;
+    border-radius: 8px; /* ปรับขนาดมุมของกล่อง */
+  }
+  
+  /* เพิ่มขนาดของ modal-header, modal-body และ modal-footer */
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 20px; /* ปรับขนาด padding ตามต้องการ */
+  }
+
+  /* จัดการกับปุ่มใน modal-footer */
+.modal-footer {
+    display: flex;
+    justify-content: space-between; /* หรือใช้ space-around หรือ space-evenly ขึ้นอยู่กับการจัดตำแหน่งที่ต้องการ */
+    padding: 20px; /* หรือค่าอื่นๆ ตามที่คุณต้องการ */
+  }
+  
+  /* เพิ่ม margin ระหว่างปุ่ม */
+  .modal-footer .btn {
+    margin: 0 10px; /* เพิ่มช่องว่างด้านซ้ายและขวาของปุ่ม */
+  }
+  
+  .num-btn {
+    font-size: 18px;
+    padding: 10px;
+    background-color: #00b383;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .num-btn:hover {
+    background-color: #00b383;
+  }
+
+  #cashAmount {
+    width: 100%; /* ขยายให้เต็มความกว้างของ container */
+    max-width: 500px; /* กำหนดขนาดสูงสุดของช่อง input */
+    height: 50px;
+  }
+
+  .centered-image {
+    max-width: 60%; /* หรือกำหนดความกว้างที่ต้องการ */
+    max-height: 60%; /* หรือกำหนดความสูงที่ต้องการ */
+    height: auto; /* รักษาสัดส่วนของภาพ */
+    width: auto; /* รักษาสัดส่วนของภาพ */
+  }
+
+  .payment-form-group {
+    display: flex;
+    align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางตามแนวแกน Y */
+    gap: 10px; /* ระยะห่างระหว่าง label และ input */
+}
+
+/* สำหรับคำว่า 1000 */
+.right-align {
+  float: right; /* จัดให้อยู่ทางขวาสุด */
+  text-align: right; /* จัดข้อความให้อยู่ทางขวา */
+  display: inline-block; /* ป้องกันไม่ให้ยืดตัวเต็มความกว้าง */
+}
+
+/* สำหรับการจัดแนวของกลุ่ม Payment */
+.payment-form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* กระจายเนื้อหาสองฝั่ง */
+  gap: 10px;
+  width: 100%;
+}
+
+.payment-label {
+  margin: 0;
+}
+
+#cashAmount {
+  flex-grow: 1;
+  max-width: 300px;
+  height: 50px;
+}
+
+.centered-image {
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #00b383; /* เปลี่ยนสีและความหนาตามต้องการ */
+  border-radius: 10px; /* ทำให้มุมมน */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ปรับค่าตามต้องการเพื่อเปลี่ยนขนาดและความเข้มของเงา */
+}
+
+.modal-title {
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+  margin: 0; /* ปรับระยะห่างตามต้องการ */
+}
