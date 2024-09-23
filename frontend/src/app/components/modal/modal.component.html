@@ -12,20 +12,20 @@
         <!-- Cash Form -->
         <form>
           <div class="form-group">
-            <h2 id="cashModalLabel">
-                Total : <span class="right-align" style="color: #6064b6">1000</span>
-            </h2>
+            <h1 id="cashModalLabel">
+                Total : <span class="right-align" style="color: red">{{ sumPrice }}</span>
+            </h1>
         </div>
         <div class="form-group payment-form-group">
             <label for="cashAmount" class="payment-label">
-                <h2 class="modal-title">Payment :</h2>
+                <h3 class="modal-title">Payment :</h3>
             </label>
-            <input type="text" class="form-control" id="cashAmount" placeholder="Enter payment">
+            <input type="text" class="form-control text-end" id="cashAmount" [(ngModel)]="cashAmount" [ngModelOptions]="{standalone: true}" (input)="calculateChange()" placeholder="Enter payment ">
         </div>
         <div class="form-group">
-            <h2 id="cashModalLabel">
-                Change : <span class="right-align" style="color: #6064b6">1000</span>
-            </h2>
+            <h3 id="cashModalLabel">
+                Change : <span class="right-align" style="color: #6064b6">{{ changeAmount }}</span>
+            </h3>
         </div>
          
         </form>
@@ -52,9 +52,9 @@
         <!-- Promtpay Form -->
         <form>
           <div class="form-group">
-            <h2 id="cashModalLabel">
-                Total : <span class="right-align" style="color: #6064b6">1000</span>
-            </h2>
+            <h1 id="cashModalLabel">
+                Total : <span class="right-align" style="color: red">{{ sumPrice }}</span>
+            </h1>
         </div>
           <div class="form-group">
               <h2 class="modal-title" id="cashModalLabel" style="color: #00b383;">Scan QR code to pay</h2>
