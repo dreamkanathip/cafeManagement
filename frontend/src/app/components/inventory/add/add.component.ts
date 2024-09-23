@@ -11,11 +11,13 @@ import { categoryType } from '../../../interfaces/category.model';
 })
 export class AddMenuComponent implements OnInit{
   @Output() menuAdded = new EventEmitter<void>();
+
   category!: any
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
   submitted: boolean = false
+
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
@@ -23,6 +25,7 @@ export class AddMenuComponent implements OnInit{
     category: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required])
   })
+
   constructor(private menuService: MenuService) {
     this.menuService.getAllCategory().subscribe(result => {
       this.category = result;
