@@ -6,8 +6,6 @@ import { EditMenuComponent } from '../edit/edit.component';
 import { HttpClient } from '@angular/common/http';
 import { Emitters } from '../../../emitters/emitter'; // Adjust the path as necessary
 
-declare var bootstrap: any;
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',

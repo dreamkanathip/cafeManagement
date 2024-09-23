@@ -42,29 +42,7 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Fetch user details for personalized message
-    this.http
-      .get<any>('http://localhost:5000/api/user', { withCredentials: true })
-      .subscribe(
-        (res) => {
-          const title =
-            res.gender === 'male'
-              ? 'Mr.'
-              : res.gender === 'female'
-              ? 'Ms.'
-              : '';
-          const firstLetterOfLastName = res.lastName
-            ? res.lastName.charAt(0)
-            : '';
-          this.message = `${title} ${firstLetterOfLastName}. ${res.firstName}!`;
-          Emitters.authEmitter.emit(true); // Emit authentication status
-        },
-        (err) => {
-          console.error('Error fetching user data:', err);
-          this.message = 'An error occurred. Please try again later.';
-          Emitters.authEmitter.emit(false); // Emit error in case of failure
-        }
-      );
+    
   }
 
   // Method to get cart counter

@@ -112,7 +112,7 @@
   border-radius: 10px;
   transition: 0.3s;
   box-sizing: border-box;
-  transform: translateY(20%); /* Moves the container further down the page */
+  transform: translateY(20%);
 }
 
 .image-column {
