@@ -2,7 +2,15 @@ const Menu = require("../models/menu");
 
 const addMenu = async(req, res) => {
   try {
-    const {name, price, description, category } = req.body
+    const {name, price, description, category } = req.body;
+    const allowedMimeTypes = ['image/png', 'image/jpeg'];
+
+    if(price < 1) {
+      return res.status(400).json({ error: "Price must be a positive number" });
+    }
+    if (!allowedMimeTypes.includes(req.file.mimetype)) {
+      return res.status(400).json({ error: "Invalid image type. Only PNG and JPG are allowed." });
+    }
     const imageBase64 = req.file.buffer.toString('base64');
     const payload = new Menu({
       name,
@@ -14,7 +22,8 @@ const addMenu = async(req, res) => {
     const result = await payload.save();
     res.status(201).json({ message: "Add menu successssssssss!", payload: result});
   } catch(err) {
-    throw new Error(err)
+    console.error("Error adding menu:", err.message); // Log the error for debugging
+    res.status(500).json({ error: "An error occurred while adding the menu" });
   }
 }
 

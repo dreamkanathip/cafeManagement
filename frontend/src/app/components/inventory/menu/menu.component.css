@@ -115,17 +115,6 @@
       max-width: 100%;
     }
 
-.menu-container {
-  border-radius: 10px;
-  transition: 0.3s;
-  display: flex;
-  width: 100%; /* ใช้ความกว้างเต็มของ wrapper */
-  max-width: 100%; /* จำกัดความกว้างสูงสุดให้ไม่เกินขนาดของ wrapper */
-  padding: 20px; /* เพิ่ม padding สำหรับ container */
-  box-sizing: border-box; /* รวม padding และ border ไว้ในขนาดของกล่อง */
-  background: rgb(237, 232, 232);
-  margin: 1%;
-}
 .menu-list {
   width: 100%;
   height: 100%;
