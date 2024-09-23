@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="cashModalLabel">Pay by <span style="color: #6064b6">Cash</span></h1>
+        <h1 class="modal-title" id="cashModalLabel"><strong>Pay by <span style="color: #6064b6">Cash</span></strong></h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,20 +12,20 @@
         <!-- Cash Form -->
         <form>
           <div class="form-group">
-            <h2 id="cashModalLabel">
-                Total : <span class="right-align" style="color: #6064b6">1000</span>
-            </h2>
+            <h1 id="cashModalLabel">
+                Total : <span class="right-align" style="color: red">{{ sumPrice }}</span>
+            </h1>
         </div>
         <div class="form-group payment-form-group">
             <label for="cashAmount" class="payment-label">
-                <h2 class="modal-title">Payment :</h2>
+                <h3 class="modal-title">Payment :</h3>
             </label>
-            <input type="text" class="form-control" id="cashAmount" placeholder="Enter payment">
+            <input type="text" class="form-control text-end" id="cashAmount" [(ngModel)]="cashAmount" [ngModelOptions]="{standalone: true}" (input)="calculateChange()" placeholder="Enter payment ">
         </div>
         <div class="form-group">
-            <h2 id="cashModalLabel">
-                Change : <span class="right-align" style="color: #6064b6">1000</span>
-            </h2>
+            <h3 id="cashModalLabel">
+                Change : <span class="right-align" style="color: #6064b6">{{ changeAmount }}</span>
+            </h3>
         </div>
          
         </form>
@@ -43,7 +43,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="paymentModalLabel">Pay by <span style="color: #6064b6">Promtpay</span></h1>
+        <h1 class="modal-title" id="paymentModalLabel"><strong>Pay by <span style="color: #6064b6">Promtpay</span></strong></h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -52,15 +52,15 @@
         <!-- Promtpay Form -->
         <form>
           <div class="form-group">
-            <h2 id="cashModalLabel">
-                Total : <span class="right-align" style="color: #6064b6">1000</span>
-            </h2>
+            <h1 id="cashModalLabel">
+                Total : <span class="right-align" style="color: red">{{ sumPrice }}</span>
+            </h1>
         </div>
           <div class="form-group">
-              <h2 class="modal-title" id="cashModalLabel" style="color: #00b383;">Scan QR code to pay</h2>
+              <h3 class="modal-title" id="cashModalLabel" style="color: #00b383;">Scan QR code to pay</h3>
           </div>
           <div class="form-group">
-              <img src="../../../assets/promtpay.png" alt="PROMTPAY Payment" class="centered-image">
+              <img src="../../../assets/MyPromtpay.jpg" alt="PROMTPAY Payment" class="centered-image">
           </div>
           
         </form>

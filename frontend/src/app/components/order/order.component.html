@@ -1,57 +1,76 @@
 <app-nav></app-nav>
 <link rel="stylesheet" href="../home/home.component.css" />
 <div class="main-video">
-    <div class="all-container">
-        <div class="container">
-            <div class="menu-container">
-                <div class="menu-list">
-                    <section class="filter-menu">
+  <div class="all-container">
+    <div class="container">
+      <div class="menu-container">
+        <div class="menu-list">
+          <section class="filter-menu">
+            <h1>Cafe Menu</h1>
+            <ul class="ul">
+              <li (click)="filterAll()">All</li>
+              <li
+                *ngFor="let filter of filters"
+                (click)="filterMenu(filter)"
+                [class.current]="currentFilter === filter.categoryName"
+              >
+                {{ filter.categoryName }}
+              </li>
+              <div data-bs-toggle="modal" data-bs-target="#cart-modal">
+                <button class="fa fa-cart-plus" role="button">
+                  {{ getCounter() }}
+                </button>
+              </div>
+            </ul>
 
-                        <h1>Cafe Menu</h1>
-                        <ul class="ul">
-                            <li (click)="filterAll()">
-                                All
-                            </li>
-                            <li *ngFor="let filter of filters" 
-                                (click)="filterMenu(filter)"
-                                [class.current]="currentFilter === filter.categoryName">
-                                {{ filter.categoryName }}
-                            </li>
-                            <div data-bs-toggle="modal" data-bs-target="#cart-modal">
-                                <button class="fa fa-cart-plus" role="button">{{getCounter()}}</button>
-                            </div>
-                        </ul>
-                        
-                        <table class="table table-striped table-inverse">
-                            <thead class="thead-inverse">
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Select</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of menu; index as i" 
-                                    [style.display]="isItemVisible(item.category) ? 'table-row' : 'none'">
-                                    <td class="image-column" scope="row"><img src="data:image/jpeg;base64,{{item.image}}" alt="Menu Item Image" class="img"/></td>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.category }}</td>
-                                    <td><button class="fa fa-cart-plus" (click)="addToCart(i)">Select</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </section>
-                </div>
-            </div>
+            <table class="table table-striped table-inverse">
+              <thead class="thead-inverse">
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Select</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let item of menu; index as i"
+                  [style.display]="
+                    isItemVisible(item.category) ? 'table-row' : 'none'
+                  "
+                >
+                  <td class="image-column" scope="row">
+                    <img
+                      src="data:image/jpeg;base64,{{ item.image }}"
+                      alt="Menu Item Image"
+                      class="img"
+                    />
+                  </td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>
+                    <button class="fa fa-cart-plus" (click)="addToCart(i)">
+                      Select
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </div>
+      </div>
     </div>
+  </div>
 
-    <app-cart class="modal fade" id="cart-modal" (cartUpdate)="onCartUpdate($event)"></app-cart> 
-
-    <video autoplay loop muted src="assets/cafe.mp4">
-        Your browser does not support the video tag.
-    </video>
+  <app-cart
+    class="modal fade"
+    id="cart-modal"
+    (cartUpdate)="onCartUpdate($event)"
+  ></app-cart>
+  <div class="bottom-right-word">
+    <a style="color: black">{{ message }}</a>
+  </div>
+  <video autoplay loop muted src="assets/cafe.mp4">
+    Your browser does not support the video tag.
+  </video>
 </div>
-

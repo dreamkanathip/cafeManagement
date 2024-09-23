@@ -1,4 +1,5 @@
-*{
+*
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,6 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    font-family: "Poppins", sans-serif;
 }
 
 .container{
@@ -289,3 +291,13 @@ body::before {
   text-align: center; /* จัดข้อความให้อยู่กลาง */
   margin: 0; /* ปรับระยะห่างตามต้องการ */
 }
+.form-control {
+  text-align: right; /* ทำให้ข้อความใน input ชิดขวา */
+  font-size: 30px; /* กำหนดขนาดอักษรที่ต้องการ */
+}
+
+::placeholder {
+  text-align: right; /* ทำให้ placeholder ชิดขวา */
+  font-size: 25px; /* กำหนดขนาดอักษรของ placeholder */
+}
+
