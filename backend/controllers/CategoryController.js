@@ -61,15 +61,14 @@ const updateCategory = async(req, res) => {
     try {
       const { _id } = req.params;
       const { categoryName } = req.body;
-      const payload = {
-        categoryName,
-      }
 
-      console.log(payload)
-      const result = await Category.findOneAndUpdate(req.params.id, req.body, {
-        new: true,});
+      const updatedCategory = await Category.findByIdAndUpdate(
+        _id,
+        { categoryName },
+        { new: true, runValidators: true } // Return the updated document and run validation
+      );
       
-      if (result.modifiedCount === 0) {
+      if (!updatedCategory) {
         return res.status(404).json({ message: "Category item not found" });
       }
       res.status(200).json({ message: "Category update successfully"});

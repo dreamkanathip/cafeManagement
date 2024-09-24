@@ -70,7 +70,6 @@
     align-items: center;      /* Vertically centers the content */
     height: 100vh;            /* Full viewport height */
     width: 100vw;             /* Full viewport width */
-    padding-top: 25px;        /* Ensures the content doesn't overlap with the navbar */
 }
 
 .container {

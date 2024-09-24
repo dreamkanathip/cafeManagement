@@ -29,7 +29,7 @@ export class CategoryService implements OnInit{
   }
 
   addCategory(category: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/addCategory`, category);
+    return this.http.post(`${this.apiUrl}/category`, category);
   }
 
   updateCategory(category:any, id:string): Observable<any> {
