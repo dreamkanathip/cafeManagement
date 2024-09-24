@@ -18,7 +18,7 @@
             <tr *ngFor="let item of categories; index as i">
               <td>{{item.categoryName}}</td>
               <td>
-                <button class="edit-menu-btn btn btn-warning" data-toggle="modal" data-target="#edit-category-modal" (click)="updateCategoryById(item._id)">
+                <button class="edit-menu-btn btn btn-warning" (click)="updateCategoryById(item._id)">
                   update
                 </button>
                 <button class="edit-menu-btn btn btn-danger" (click)="deleteCategoryById(item._id)">
@@ -28,6 +28,22 @@
             </tr>
           </tbody>
         </table>
+        <div *ngIf="showEdit">
+          <form [formGroup]="categoryEditForm" (ngSubmit)="submitEdit()">
+          <div class="input-box">
+            <div class="input-field">
+              <div class="form-group">
+                <h5>Edit Category: {{ editCategory }}</h5>
+                <input type="text" class="form-control" id="category-name" placeholder="Enter New Category name" formControlName="categoryName"/>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer form-group">
+            <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </form>
+        </div>
         <form (ngSubmit)="submit()" [formGroup]="categoryForm">
           <div class="input-box">
             <div class="input-field">
@@ -38,7 +54,7 @@
             </div>
           </div>
           <div class="modal-footer form-group">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelAdd()">Cancel</button>
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
@@ -46,5 +62,3 @@
     </div>
   </div>
 </div>
-
-<app-editCategory class="modal fade" id="edit-category-modal" (categoriesEdit)="onCategoryEdit()"></app-editCategory>
