@@ -13,7 +13,7 @@ export class PaymentComponent implements OnInit {
   message: string = '';
 
   constructor(private http: HttpClient) {} // Inject HttpClient here
-
+ 
   ngOnInit(): void {
     this.http
       .get('http://localhost:5000/api/user', { withCredentials: true })

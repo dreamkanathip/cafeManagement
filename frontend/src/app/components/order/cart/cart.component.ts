@@ -1,6 +1,7 @@
 import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import { menuType } from '../../../interfaces/menu.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,7 @@ export class CartComponent {
   @Output() cartUpdate = new EventEmitter<menuType[]>();
 
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private router: Router) {
     this.cart = this.orderService.getCart()
   }
 
@@ -26,5 +27,8 @@ export class CartComponent {
     this.cart.splice(i, 1)
     this.cartUpdate.emit(this.cart);
     this.orderService.updateCart(this.cart);
+  }
+  submitCart() {
+    this.router.navigate(['/payment']); // Adjust the route path as needed
   }
 }

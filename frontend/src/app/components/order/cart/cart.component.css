@@ -4,7 +4,16 @@
   height: 100vh;
   overflow: hidden;
 }
-  
+.image-column {
+  width: 20%;
+}
+.img {
+  height: auto;
+  width: 100%;
+}
+.text-end{
+  font-size: large;
+}
   .main-video video {
     position: fixed;
     z-index: -9;

@@ -8,6 +8,7 @@
             <table class="table table-striped table-inverse">
                 <thead class="thead-inverse">
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Price</th>
                         <th></th>
@@ -15,21 +16,28 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of cart; index as i">
-                        <td>{{item.name}}</td>
-                        <td>{{item.price}}</td>
+                        <td class="image-column" scope="row">
+                            <img
+                              src="data:image/jpeg;base64,{{ item.image }}"
+                              alt="Menu Item Image"
+                              class="img"
+                            />
+                          </td>
+                        <td>{{item.name}} ({{item.category}})</td>
+                        <td>{{item.price.toLocaleString('en', {useGrouping:true})}}</td>
                         <td class="delete-column"><button type="button" class="btn-close" (click)="deleteCart(i)"></button></td>
                     </tr>
                 </tbody>
             </table>
 
             <p class="text-end">
-                <b>Total: </b> {{getSumPrice()}}
+                <b>Total: </b> {{getSumPrice().toLocaleString('en', {useGrouping:true})}}
             </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary cancel-btn" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary submit-btn">Submit</button>
+                <button type="button" class="btn btn-primary submit-btn" data-bs-dismiss="modal" routerLink="/payment">Submit</button>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                 <tr>
                   <th></th>
                   <th>Name</th>
-                  <th>Category</th>
+                  <th>Price</th>
                   <th>Select</th>
                 </tr>
               </thead>
@@ -41,8 +41,8 @@
                       class="img"
                     />
                   </td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.category }}</td>
+                  <td>{{ item.name }}({{item.category}})</td>
+                  <td>{{ item.price.toLocaleString('en', {useGrouping:true}) }}</td>
                   <td>
                     <button class="fas fa-shopping-cart" (click)="addToCart(i)">
                       Select

@@ -11,11 +11,11 @@ import Swal from 'sweetalert2';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit{
+export class CategoryComponent implements OnInit {
 
   @Output() categoryAdded = new EventEmitter<void>();
   editCategory!: any;
-  showEdit : boolean = false
+  showEdit: boolean = false
   updateId!: string
 
   categories: categoryType[] = []
@@ -28,8 +28,8 @@ export class CategoryComponent implements OnInit{
     categoryName: new FormControl('', [Validators.required]),
   })
 
-  constructor(private menuService: MenuService, 
-    private categoryService: CategoryService,) {}
+  constructor(private menuService: MenuService,
+    private categoryService: CategoryService,) { }
 
   ngOnInit(): void {
     this.categoryService.getAllCategory().subscribe(result => {
@@ -48,11 +48,11 @@ export class CategoryComponent implements OnInit{
     })
     this.showEdit = !this.showEdit
   }
-  
+
   loadCategoryItems() {
     console.log("loaded")
     this.categoryService.getAllCategory().subscribe((result) => {
-        this.categories = result;
+      this.categories = result;
     });
   }
 
@@ -83,22 +83,58 @@ export class CategoryComponent implements OnInit{
     });
   }
 
-  cancelAdd(){
+  cancelAdd() {
     this.categoryForm.reset
   }
+  checkCategoryRepeat() {
+    const enteredCategory = this.categoryForm.get('categoryName')?.value?.trim().toLowerCase() ?? '';
 
-  cancelEdit(){
+    if (enteredCategory) {
+      const isDuplicate = this.categories.some(category =>
+        category.categoryName.trim().toLowerCase() === enteredCategory
+      );
+
+      if (isDuplicate) {
+
+        this.categoryForm.get('categoryName')?.setErrors({ duplicate: true });
+      } else {
+        // If no duplicates are found, clear any existing errors
+        this.categoryForm.get('categoryName')?.setErrors(null);
+      }
+    }
+  }
+
+  checkCategoryEditRepeat() {
+    const enteredCategory = this.categoryEditForm.get('categoryName')?.value?.trim().toLowerCase() ?? '';
+
+    if (enteredCategory) {
+      const isDuplicate = this.categories.some(category =>
+        category.categoryName.trim().toLowerCase() === enteredCategory
+      );
+
+      if (isDuplicate) {
+
+        this.categoryEditForm.get('categoryName')?.setErrors({ duplicate: true });
+      } else {
+        // If no duplicates are found, clear any existing errors
+        this.categoryEditForm.get('categoryName')?.setErrors(null);
+      }
+    }
+  }
+
+  cancelEdit() {
     this.showEdit = false;
     this.categoryEditForm.reset()
   }
 
   submit() {
-    if (this.categoryForm.valid) {
+    this.checkCategoryRepeat();
+    if (this.categoryForm.valid && !this.categoryForm.get('categoryName')?.errors) {
       console.log(this.categoryForm)
       const editCategory: any = {
         categoryName: this.categoryForm.get('categoryName')?.value ?? ''
       };
-    
+
       Swal.fire({
         title: "Do you want to save the changes?",
         showCancelButton: true,
@@ -120,18 +156,28 @@ export class CategoryComponent implements OnInit{
         }
       });
     } else {
-      console.log('Please complete the form');
-      Swal.fire({
-        icon: "error",
-        title: "error",
-        text: "Please complete the form",
-        showConfirmButton: true,
-      });
+      if (this.categoryForm.get('categoryName')?.errors) {
+        Swal.fire({
+          icon: "error",
+          title: "Duplicate Category",
+          text: "This category already exists.",
+          showConfirmButton: true,
+        });
+      } else {
+        console.log('Please complete the form');
+        Swal.fire({
+          icon: "error",
+          title: "error",
+          text: "Please complete the form",
+          showConfirmButton: true,
+        });
+      }
     }
   }
 
   submitEdit() {
-    if (this.categoryEditForm.valid) {
+    this.checkCategoryEditRepeat();
+    if (this.categoryEditForm.valid && !this.categoryEditForm.get('categoryName')?.errors) {
       const updatedCategory = {
         categoryName: this.categoryEditForm.get('categoryName')?.value ?? ''
       };
@@ -159,13 +205,22 @@ export class CategoryComponent implements OnInit{
         }
       });
     } else {
-      console.log('Please complete the form');
-      Swal.fire({
-        icon: "error",
-        title: "error",
-        text: "Please complete the form",
-        showConfirmButton: true,
-      });
+      if (this.categoryForm.get('categoryName')?.errors) {
+        Swal.fire({
+          icon: "error",
+          title: "Duplicate Category",
+          text: "This category already exists.",
+          showConfirmButton: true,
+        });
+      } else {
+        console.log('Please complete the form');
+        Swal.fire({
+          icon: "error",
+          title: "error",
+          text: "Please complete the form",
+          showConfirmButton: true,
+        });
+      }
     }
   }
 }

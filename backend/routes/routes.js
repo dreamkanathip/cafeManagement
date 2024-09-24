@@ -19,20 +19,21 @@ router.post("/logout", authController.logout);
 // Menu
 router.post("/addMenu",  authenticateToken, upload.single("image"), MenuController.addMenu);
 router.get("/allMenu", authenticateToken, MenuController.getMenu);
-router.get("/menu/:_id", MenuController.getMenuById);
-router.delete("/menu/:_id", MenuController.deleteMenu);
+router.get("/menu/:_id", authenticateToken, MenuController.getMenuById);
+router.delete("/menu/:_id",authenticateToken,  MenuController.deleteMenu);
 router.put(
   "/menuUpdate/:_id",
+  authenticateToken,
   upload.single("image"),
   MenuController.updateMenu
 );
 
 // Category
-router.get("/allCategory", CategoryController.getAllCategory);
-router.post("/category", CategoryController.addCategory);
-router.get("/category/:_id", CategoryController.getCategoryById);
-router.delete("/category/:_id", CategoryController.deleteCategory);
-router.patch("/categoryUpdate/:_id", CategoryController.updateCategory);
+router.get("/allCategory", authenticateToken, CategoryController.getAllCategory);
+router.post("/category", authenticateToken, CategoryController.addCategory);
+router.get("/category/:_id", authenticateToken, CategoryController.getCategoryById);
+router.delete("/category/:_id", authenticateToken, CategoryController.deleteCategory);
+router.patch("/categoryUpdate/:_id", authenticateToken, CategoryController.updateCategory);
 
 // Payment
 // router.post("/addPayment", PaymentController.addPayment);

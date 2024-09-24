@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { OrderService } from '../../services/order.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal',
@@ -9,24 +12,39 @@ import { HttpClient } from '@angular/common/http';
 export class ModalComponent implements OnInit {
   sumPrice: number = 0;
   cashAmount: number = 0;
-  changeAmount: number = 0;
+  changeAmount: any = "invalid";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private orderService: OrderService, private router: Router) {}
 
   ngOnInit() {
     this.getSumPrice();
   }
 
   getSumPrice() {
-    this.http.get<{ sumPrice: number }>('http://localhost:5000/api/payment/sumPrice')
-      .subscribe(response => {
-        this.sumPrice = response.sumPrice;
-      }, error => {
-        console.error('Error fetching sum price:', error);
-      });
+    this.sumPrice = this.orderService.getSumPrice()
   }
 
   calculateChange() {
-    this.changeAmount = this.cashAmount - this.sumPrice;
+    const change = this.cashAmount - this.sumPrice;
+    if(change < 0 || isNaN(change)) {
+      this.changeAmount = "invalid"
+    } else {
+      this.changeAmount = change
+    }
   }
+
+  onClickCash() {
+    if(this.changeAmount == "invalid"){
+      Swal.fire('Error', 'Invalid Change!', 'error');
+    } else {
+      Swal.fire('Success', 'Purchase Success!', 'success');
+      this.router.navigate(['/order']);
+    }
+  }
+
+  onClickScan() {
+    Swal.fire('Success', 'Purchase Success!', 'success');
+      this.router.navigate(['/order']);
+  }
+  
 }

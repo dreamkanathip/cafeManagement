@@ -50,7 +50,9 @@ export class EditMenuComponent implements OnInit {
     return this.menuForm.get('image')
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    
+   }
   getCategoriesFromApi() {
     this.categoryService.getAllCategory().subscribe(result => {
       this.category = result;
