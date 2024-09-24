@@ -1,229 +1,205 @@
 /* กำหนดการตั้งค่าพื้นฐาน */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    margin: 0;
-    overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
-    height: 100vh; /* ทำให้ body ครอบคลุมความสูงทั้งหมดของ viewport */
-}
-
-.main-video {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* ตั้งค่าให้วิดีโอครอบคลุมพื้นที่ทั้งหมด */
-.main-video video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: -1;
+  margin: 0;
+  overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
+  height: 100vh; /* ทำให้ body ครอบคลุมความสูงทั้งหมดของ viewport */
 }
 
 /* ตั้งค่า .boxwrapper ให้อยู่ตรงกลาง */
 .boxwrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 /* ตั้งค่า .container ให้อยู่ใน .boxwrapper */
 .container {
-    width: 800px;
-    border-radius: 8px;
-    padding: 40px; /* เพิ่ม padding ที่เหมาะสม */
-    background-color: white;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
-                0 5px 12px -2px rgba(0, 0, 0, 0.1),
-                0 18px 36px -6px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  border-radius: 8px;
+  padding: 40px; /* เพิ่ม padding ที่เหมาะสม */
+  background-color: white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 5px 12px -2px rgba(0, 0, 0, 0.1),
+    0 18px 36px -6px rgba(0, 0, 0, 0.1);
 }
 
 /* กำหนดรูปแบบสำหรับ title */
 .container .title {
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container form input {
-    display: none;
+  display: none;
 }
 
 .container form .category {
-    margin-top: 10px;
-    padding-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
+  margin-top: 10px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
 }
 
 .category label {
-    height: 145px;
-    padding: 20px;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 5px;
-    position: relative;
-    margin-bottom: 15px; /* เพิ่มช่องว่างระหว่างตัวเลือกการชำระเงิน */
+  height: 145px;
+  padding: 20px;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 15px; /* เพิ่มช่องว่างระหว่างตัวเลือกการชำระเงิน */
 }
 
 /* ปรับ CSS ของปุ่ม */
 .cancel {
-    background-color: #00b383;
-    border: 1px solid #00b383;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-    cursor: pointer;
-    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-    margin-top: 20px;
-    align-items: center;
-    justify-content: center;
-    width: 100v;
-    height: 60px;
+  background-color: #00b383;
+  border: 1px solid #00b383;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100v;
+  height: 60px;
 }
 
 .cancel:hover {
-    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-    transform: translateY(-2px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+  transform: translateY(-2px);
 }
 /* ปรับขนาดรูปภาพภายใน .imgContainer */
 .imgContainer {
-    width: 100px; /* ขนาดที่ต้องการให้รูปภาพมีความกว้าง */
-    height: 100px; /* ขนาดที่ต้องการให้รูปภาพมีความสูง */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* ซ่อนส่วนที่เกินของรูปภาพ */
-    border-radius: 5px; /* เพิ่ม border-radius ถ้าต้องการให้มุมกลม */
+  width: 100px; /* ขนาดที่ต้องการให้รูปภาพมีความกว้าง */
+  height: 100px; /* ขนาดที่ต้องการให้รูปภาพมีความสูง */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* ซ่อนส่วนที่เกินของรูปภาพ */
+  border-radius: 5px; /* เพิ่ม border-radius ถ้าต้องการให้มุมกลม */
 }
 
 .imgContainer img {
-    width: 100%; /* ทำให้รูปภาพเต็มความกว้างของ .imgContainer */
-    height: auto; /* เก็บอัตราส่วนความสูงตามอัตราส่วนของความกว้าง */
-    object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่ทั้งหมดของ .imgContainer */
+  width: 100%; /* ทำให้รูปภาพเต็มความกว้างของ .imgContainer */
+  height: auto; /* เก็บอัตราส่วนความสูงตามอัตราส่วนของความกว้าง */
+  object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่ทั้งหมดของ .imgContainer */
 }
 .middle-word {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 50000px; /* Adjust the font size */
-    /* font-family: "Poppins", sans-serif; */
-    letter-spacing: 10px; /* Adjust the spacing between letters */
-  }
-  
-  .bottom-right-word {
-    position: fixed;
-    width: auto; /* Adjust width as needed */
-    height: auto; /* Adjust height as needed */
-    display: block;
-    justify-content: flex-end;
-    align-items: flex-end;
-    border-radius: 10px;
-    bottom: 0;
-    right: 0;
-    z-index: 99;
-  }
-  
-  .bottom-left-word {
-    position: fixed;
-    width: 100%; /* Adjust width as needed */
-    height: 90%; /* Adjust height as needed */
-    display: block;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border-radius: 10px;
-    bottom: 0;
-    left: 0;
-    z-index: 99;
-  }
-  
-  .bottom-right-word a {
-    background-color: rgba(255, 255, 255, 0.71);
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
-  .bottom-left-word a {
-    background-color: rgba(255, 255, 255, 0.71);
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
-  a:hover {
-    background-color: rgb(255, 255, 255);
-  }
-  
-  /* Fullscreen video styling */
-  .main-video {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .main-video video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures video covers the entire container */
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
-  
-  /* Middle text styling */
-  .middle-word {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 5vw;
-    text-align: center;
-    z-index: 1;
-  }
-  
-  /* Bottom-right credit link */
-  .bottom-right-word {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1;
-  }
-  
-  .bottom-right-word a {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    text-decoration: none;
-  }
-  
-  .bottom-right-word a:hover {
-    background-color: rgba(255, 255, 255, 1);
-  }
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 50000px; /* Adjust the font size */
+  /* font-family: "Poppins", sans-serif; */
+  letter-spacing: 10px; /* Adjust the spacing between letters */
+}
+
+.bottom-right-word {
+  position: fixed;
+  width: auto; /* Adjust width as needed */
+  height: auto; /* Adjust height as needed */
+  display: block;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-radius: 10px;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.bottom-left-word {
+  position: fixed;
+  width: 100%; /* Adjust width as needed */
+  height: 90%; /* Adjust height as needed */
+  display: block;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 10px;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.bottom-right-word a {
+  background-color: rgba(255, 255, 255, 0.71);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.bottom-left-word a {
+  background-color: rgba(255, 255, 255, 0.71);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+a:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Fullscreen video styling */
+.main-video {
+  width: 100%;
+  height: 100%;
+}
+
+.main-video video {
+  position: fixed;
+  z-index: -9;
+  object-fit: cover;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Middle text styling */
+.middle-word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 5vw;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Bottom-right credit link */
+.bottom-right-word {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
+.bottom-right-word a {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.bottom-right-word a:hover {
+  background-color: rgba(255, 255, 255, 1);
+}

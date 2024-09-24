@@ -14,13 +14,23 @@
                 <th>Price(฿)</th>
                 <th>Description</th>
                 <th>
-                  <button type="button" class="btn btn-primary add-menu-btn" data-bs-toggle="modal" data-bs-target="#add-menu-modal">
-                    <i class="fas fa-plus"></i>Add menu</button>
+                  <button
+                    type="button"
+                    class="btn btn-primary add-menu-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#add-menu-modal"
+                  >
+                    <i class="fas fa-plus"></i>Add menu
+                  </button>
                 </th>
                 <th>
-                  <button class="btn btn-primary add-menu-btn" data-bs-toggle="modal"
-                    data-bs-target="#add-category-modal">
-                    <i class="fas fa-plus"></i>Add category</button>
+                  <button
+                    class="btn btn-primary add-menu-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#add-category-modal"
+                  >
+                    <i class="fas fa-plus"></i>Add category
+                  </button>
                 </th>
               </tr>
             </thead>
@@ -28,19 +38,30 @@
               <tr *ngFor="let item of menuItems; index as i">
                 <!-- <td class="menu-name">{{i+1}}</td> -->
                 <td>
-                  <img src="data:image/jpeg;base64,{{item.image}}" alt="Menu Item Image" class="img" />
+                  <img
+                    src="data:image/jpeg;base64,{{ item.image }}"
+                    alt="Menu Item Image"
+                    class="img"
+                  />
                 </td>
-                <td class="menu-name">{{item.name}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.description}}</td>
+                <td class="menu-name">{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.description }}</td>
                 <td>
-                  <button class="edit-menu-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-menu-modal"
-                    (click)="updateMenuById(item._id)">
+                  <button
+                    class="edit-menu-btn btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#edit-menu-modal"
+                    (click)="updateMenuById(item._id)"
+                  >
                     update
                   </button>
                 </td>
                 <td>
-                  <button class="edit-menu-btn btn btn-danger" (click)="deleteMenuById(item._id)">
+                  <button
+                    class="edit-menu-btn btn btn-danger"
+                    (click)="deleteMenuById(item._id)"
+                  >
                     delete
                   </button>
                 </td>
@@ -57,7 +78,14 @@
   </video>
 </div>
 
-<app-add class="modal fade" id="add-menu-modal" (menuAdded)="onMenuAdded()"></app-add>
-<app-edit class="modal fade" id="edit-menu-modal" (menuUpdate)="onMenuUpdate()"></app-edit>
+<app-add
+  class="modal fade"
+  id="add-menu-modal"
+  (menuAdded)="onMenuAdded()"
+></app-add>
+<app-edit
+  class="modal fade"
+  id="edit-menu-modal"
+  (menuUpdate)="onMenuUpdate()"
+></app-edit>
 <app-category class="modal fade" id="add-category-modal"></app-category>
-
