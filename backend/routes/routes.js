@@ -17,8 +17,8 @@ router.get("/user", authenticateToken, authController.getUser);
 router.post("/logout", authController.logout);
 
 // Menu
-router.post("/addMenu", upload.single("image"), MenuController.addMenu);
-router.get("/allMenu", MenuController.getMenu);
+router.post("/addMenu",  authenticateToken, upload.single("image"), MenuController.addMenu);
+router.get("/allMenu", authenticateToken, MenuController.getMenu);
 router.get("/menu/:_id", MenuController.getMenuById);
 router.delete("/menu/:_id", MenuController.deleteMenu);
 router.put(

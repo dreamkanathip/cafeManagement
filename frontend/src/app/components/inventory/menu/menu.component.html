@@ -30,12 +30,12 @@
                 <td>
                   <img src="data:image/jpeg;base64,{{item.image}}" alt="Menu Item Image" class="img" />
                 </td>
-                <td class="menu-name">{{item.name}}</td>
+                <td class="menu-name">{{item.name}} ({{item.category}})</td>
                 <td>{{item.price}}</td>
                 <td>{{item.description}}</td>
                 <td>
                   <button class="edit-menu-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-menu-modal"
-                    (click)="updateMenuById(item._id)">
+                    (click)="setUpdateValue(item._id)">
                     update
                   </button>
                 </td>

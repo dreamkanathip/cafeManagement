@@ -32,7 +32,7 @@ export class CategoryComponent implements OnInit{
     private categoryService: CategoryService,) {}
 
   ngOnInit(): void {
-    this.menuService.getAllCategory().subscribe(result => {
+    this.categoryService.getAllCategory().subscribe(result => {
       this.categories = result;
       console.log('Categories received.')
     })
@@ -51,7 +51,7 @@ export class CategoryComponent implements OnInit{
   
   loadCategoryItems() {
     console.log("loaded")
-    this.menuService.getAllCategory().subscribe((result) => {
+    this.categoryService.getAllCategory().subscribe((result) => {
         this.categories = result;
     });
   }
@@ -66,12 +66,15 @@ export class CategoryComponent implements OnInit{
       text: 'This will delete the category.',
       icon: 'warning',
       showCancelButton: true,
+      confirmButtonColor: '#d33 ',
+      cancelButtonColor: '##3085d6',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
         this.categoryService.deleteCategoryById(id).subscribe(() => {
           this.categories = this.categories.filter(item => item._id !== id);
           Swal.fire('Deleted!', 'The category has been deleted.', 'success');
+          this.categoryService.executeMenuReloadCategories()
         }, error => {
           console.error('Error deleting category', error);
           Swal.fire('Error!', 'Could not delete category. Please try again.', 'error');
@@ -112,6 +115,7 @@ export class CategoryComponent implements OnInit{
             });
             this.loadCategoryItems()
             this.categoryForm.reset()
+            this.categoryService.executeMenuReloadCategories()
           });
         }
       });
@@ -150,6 +154,7 @@ export class CategoryComponent implements OnInit{
             this.loadCategoryItems()
             this.categoryEditForm.reset()
             this.showEdit = false;
+            this.categoryService.executeMenuReloadCategories()
           });
         }
       });
