@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { categoryType } from '../../../interfaces/category.model';
 
 @Component({
   selector: 'app-add',
@@ -10,19 +11,21 @@ import Swal from 'sweetalert2';
 })
 export class AddMenuComponent implements OnInit{
   @Output() menuAdded = new EventEmitter<void>();
+
   category!: any
   selectedCategory: string = "Select Category"
   imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
-  
+  submitted: boolean = false
 
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    price: new FormControl(''),
-    description: new FormControl(''),
-    category: new FormControl(''),
-    image: new FormControl('')
+    price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    description: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required])
   })
+
   constructor(private menuService: MenuService) {
     this.menuService.getAllCategory().subscribe(result => {
       this.category = result;
@@ -30,10 +33,26 @@ export class AddMenuComponent implements OnInit{
     console.log('Add Menu modal hace receieved all category')
   }
 
+  get menuName() {
+    return this.menuForm.get('name')
+  }
+  get menuPrice() {
+    return this.menuForm.get('price')
+  }
+  get menuDescription() {
+    return this.menuForm.get('description')
+  }
+  get menuCategory() {
+    return this.menuForm.get('category')
+  }
+  get menuImage() {
+    return this.menuForm.get('image')
+  }
+
   ngOnInit(): void {}
 
   selectCategory(i: number) {
-    this.selectedCategory = this.category[i].category
+    this.selectedCategory = this.category[i].categoryName
     this.menuForm.get('category')?.setValue(this.selectedCategory);
   }
 
@@ -60,6 +79,7 @@ export class AddMenuComponent implements OnInit{
   }
 
   submit() {
+    this.submitted = true
     if (this.menuForm.valid && this.selectedFile) {
       const formData = new FormData();
 

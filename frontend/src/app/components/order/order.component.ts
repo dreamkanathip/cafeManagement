@@ -3,73 +3,86 @@ import { OrderService } from '../../services/order.service';
 import { menuType } from '../../interfaces/menu.model';
 import { categoryType } from '../../interfaces/category.model';
 import { CategoryService } from '../../services/category.service';
+import { HttpClient } from '@angular/common/http';
+import { Emitters } from '../../emitters/emitter'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrl: './order.component.css'
+  styleUrls: ['./order.component.css'], // Fixed styleUrl to styleUrls
 })
 export class OrderComponent implements OnInit {
+  cart: menuType[] = [];
+  menu: menuType[] = [];
+  filters: categoryType[] = [];
+  currentFilter: string = 'All';
+  message: string = '';
 
-  cart: menuType[] = []
+  constructor(
+    private orderService: OrderService,
+    private categoryService: CategoryService,
+    private http: HttpClient // Inject HttpClient here
+  ) {
+    // Fetching cart from service
+    this.cart = this.orderService.getCart();
 
-  menu: menuType[] =[]
+    // Fetching and sorting menu
+    this.orderService.getAllMenu().subscribe((result) => {
+      this.menu = result.sort((a: menuType, b: menuType) =>
+        a.name.localeCompare(b.name)
+      );
+    });
 
-  filters : categoryType[] = []
-
-  getsomeMenu(id: string){
-    return this.menu.find(item => item._id === id)
+    // Fetching and sorting categories
+    this.categoryService.getAllCategory().subscribe((result) => {
+      this.filters = result.sort((a: categoryType, b: categoryType) =>
+        a.categoryName.localeCompare(b.categoryName)
+      );
+    });
   }
 
-  //
+  ngOnInit(): void {
+    
+  }
 
-  currentFilter: string = 'All';
-
-  constructor(private orderService: OrderService, private categoryService: CategoryService) {
-    this.cart = this.orderService.getCart()
-    this.orderService.getAllMenu().subscribe(result => {
-      this.menu = result.sort((a: menuType, b: menuType) => a.name.localeCompare(b.name)); // Sorted
-    })
-    this.categoryService.getAllCategory().subscribe(result => {
-      this.filters = result.sort((a: categoryType, b: categoryType) => a.categoryName.localeCompare(b.categoryName)); // Sorted
-      console.log('Categories received.')
-    })
-    }
-
-  ngOnInit(): void { }
-
+  // Method to get cart counter
   getCounter() {
     return this.orderService.getCounter();
   }
 
+  // Method to add a menu item to cart
   addToCart(menuID: number) {
-    this.orderService.add(menuID)
+    this.orderService.add(menuID);
   }
 
+  // Method to get total sum price of items in cart
   getSumPrice() {
-    return this.orderService.getSumPrice()
+    return this.orderService.getSumPrice();
   }
 
+  // Method to filter menu items by category
   filterMenu(category: categoryType) {
     this.currentFilter = category.categoryName;
   }
 
-   // Method to reset and show all items
-   filterAll() {
+  // Method to reset filters and show all items
+  filterAll() {
     this.currentFilter = 'All';
   }
 
-  // Helper method to determine visibility of an item
+  // Helper method to determine visibility of menu items
   isItemVisible(category: string) {
-    if (this.currentFilter === 'All') {
-      return true;
-    }
-    return category === this.currentFilter;
+    return this.currentFilter === 'All' || category === this.currentFilter;
   }
 
+  // Method to update the cart when items are added or removed
   onCartUpdate(updatedCart: menuType[]) {
     this.cart = updatedCart;
-    this.orderService.getCart()
+    this.orderService.getCart();
   }
 
+  // Method to get a specific menu item by its ID
+  getsomeMenu(id: string) {
+    return this.menu.find((item) => item._id === id);
+  }
 }

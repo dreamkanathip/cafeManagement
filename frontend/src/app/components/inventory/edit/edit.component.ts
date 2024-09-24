@@ -18,13 +18,14 @@ export class EditMenuComponent implements OnInit {
   imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
   selectedFile: File | null = null; // Store the file here
   id!: string
-
+  submitted: boolean = false;
+  
   menuForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    price: new FormControl(''),
-    description: new FormControl(''),
-    category: new FormControl(''),
-    image: new FormControl('')
+    price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    description: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required])
   })
 
   constructor(private menuService: MenuService) {
@@ -33,10 +34,26 @@ export class EditMenuComponent implements OnInit {
     })
   }
 
+  get menuName() {
+    return this.menuForm.get('name')
+  }
+  get menuPrice() {
+    return this.menuForm.get('price')
+  }
+  get menuDescription() {
+    return this.menuForm.get('description')
+  }
+  get menuCategory() {
+    return this.menuForm.get('category')
+  }
+  get menuImage() {
+    return this.menuForm.get('image')
+  }
+
   ngOnInit(): void { }
 
   selectCategory(i: number) {
-    this.selectedCategory = this.category[i].category
+    this.selectedCategory = this.category[i].categoryName
     this.menuForm.get('category')?.setValue(this.selectedCategory);
   }
 
@@ -55,10 +72,26 @@ export class EditMenuComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+
+  // Utility function to convert Base64 string to a File object
+  base64ToFile(base64String: string, fileName: string): File {
+    const arr = base64String.split(',');
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], fileName, { type: mime });
+  }
+
   getItem(id: any) {
     this.updateId = id;
     this.menuService.getSomeMenu(id).subscribe((result) => {
-      this.menuForm.patchValue({
+      this.menuForm.setValue({
         name: result.name,
         price: result.price.toString(),
         description: result.description,
@@ -67,6 +100,7 @@ export class EditMenuComponent implements OnInit {
       });
         this.imagePreview = "data:image/png;base64,"+result.image;
         this.selectedCategory = result.category;
+        this.selectedFile = this.base64ToFile(this.imagePreview, 'menuItem.png');
     })
     console.log(this.menuForm)
   }
@@ -78,6 +112,7 @@ export class EditMenuComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true
     if (this.menuForm.valid && this.selectedFile) {
       const formData = new FormData();
       formData.append('name', this.menuForm.get('name')?.value ?? '');
@@ -108,6 +143,7 @@ export class EditMenuComponent implements OnInit {
         }
       });
     } else {
+      
       console.log('Please complete the form');
       Swal.fire({
         icon: "error",

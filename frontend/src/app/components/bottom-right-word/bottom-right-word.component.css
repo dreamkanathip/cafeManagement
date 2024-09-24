@@ -1,0 +1,25 @@
+.bottom-right-word {
+  position: fixed;
+  width: auto; /* Adjust width as needed */
+  height: auto; /* Adjust height as needed */
+  display: block;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-radius: 10px;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.bottom-right-word a {
+  background-color: rgba(255, 255, 255, 0.71);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.bottom-right-word a:hover {
+  background-color: rgba(255, 255, 255, 1);
+}

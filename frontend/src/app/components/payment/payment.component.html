@@ -1,0 +1,53 @@
+<!--Font Awesome CDN-->
+<app-nav></app-nav>
+<link rel="stylesheet" href="payment.component.css">
+
+<body>
+  <!-- ให้แน่ใจว่า HTML นี้อยู่ในไฟล์ payment.component.html -->
+  <div class="main-video">
+    <div class="boxwrapper">
+    <div class="container">
+      <div class="title">
+        <h1><strong>Select a <span style="color: #6064b6">Payment</span> method</strong></h1>
+      </div>
+
+      <form action="#">
+        <div class="category">
+          <!-- ตัวเลือกการชำระเงิน -->
+          <label for="cash" class="cashMethod">
+            <div class="imgName">
+              <div class="imgContainer cash">
+                <img src="../../../assets/cash.jpg" alt="CASH Payment">
+              </div>
+            </div>
+          </label>
+
+          <label for="pp" class="cashMethod">
+            <div class="imgName">
+              <div class="imgContainer pp">
+                <img src="../../../assets/promtpay.png" alt="PROMTPAY Payment">
+              </div>
+            </div>
+          </label>
+          <button type="button" class="cancel btn btn-primary" data-toggle="modal" data-target="#cashModal">
+            <strong>CASH</strong>
+          </button>
+          <button type="button" class="cancel btn btn-primary" data-toggle="modal" data-target="#paymentModal">
+            <strong>PROMTPAY</strong>
+          </button>
+
+          <!-- Include the modal component -->
+          <app-modal></app-modal>
+
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <div class="bottom-right-word">
+    <a style="color: black">{{ message }}</a>
+  </div>
+    <video autoplay loop muted src="assets/cafe.mp4"> </video>
+  </div>
+</body>

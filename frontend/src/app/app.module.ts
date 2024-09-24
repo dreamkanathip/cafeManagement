@@ -25,6 +25,10 @@ import { EditMenuComponent } from './components/inventory/edit/edit.component';
 import { AddMenuComponent } from './components/inventory/add/add.component';
 import { CategoryComponent } from './components/inventory/category/category.component';
 import { CartComponent } from './components/order/cart/cart.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { BottomRightWordComponent } from './components/bottom-right-word/bottom-right-word.component';
+import { ImageDirective } from './directives/validate/image.directive';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,11 @@ import { CartComponent } from './components/order/cart/cart.component';
     AddMenuComponent,
     CategoryComponent,
     CartComponent,
+    PaymentComponent,
+    ModalComponent,
+    BottomRightWordComponent,
+    ImageDirective,
+
   ],
   imports: [
     BrowserModule,
