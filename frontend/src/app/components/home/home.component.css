@@ -66,6 +66,7 @@ a:hover {
   font-size: 5vw;
   text-align: center;
   z-index: 1;
+  letter-spacing: 0.2em;
 }
 
 /* Bottom-right credit link */
