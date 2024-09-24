@@ -56,6 +56,7 @@ export class EditMenuComponent implements OnInit {
   getCategoriesFromApi() {
     this.categoryService.getAllCategory().subscribe(result => {
       this.category = result;
+      console.log("called from edit")
     })
   }
   selectCategory(i: number) {

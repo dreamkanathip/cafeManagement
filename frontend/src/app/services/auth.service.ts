@@ -12,7 +12,7 @@ export class AuthService {
   authStatus$ = this.authStatusSubject.asObservable();
 
   private isBrowser: boolean;
-
+  apiUrl = "http://localhost:5000/api"
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -22,31 +22,33 @@ export class AuthService {
   }
 
   login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post<any>('YOUR_API_ENDPOINT/login', credentials).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response) => {
-        if (this.isBrowser) {
-          localStorage.setItem('token', response.token);
-        }
-        this.authStatusSubject.next(true);
+        // No need to store the token in localStorage; it will be in an HTTP-only cookie
+        this.authStatusSubject.next(true); // Set the authenticated status
       })
     );
   }
 
   logout(): void {
-    if (this.isBrowser) {
-      localStorage.removeItem('token');
-    }
-    this.authStatusSubject.next(false);
+    this.http.post(`${this.apiUrl}/check-auth`, {}).subscribe(() => {
+      this.authStatusSubject.next(false); // Update the authentication status
+    });
   }
 
   checkAuthentication(): void {
-    if (this.isBrowser) {
-      const token = localStorage.getItem('token');
-      this.authStatusSubject.next(!!token);
-    }
+    this.http.get<any>(`${this.apiUrl}/check-auth`, { withCredentials: true }).subscribe(
+      (response) => {
+        this.authStatusSubject.next(true);
+      },
+      (error) => {
+        this.authStatusSubject.next(false);
+      }
+    );
   }
 
   isAuthenticated(): boolean {
-    return this.isBrowser ? !!localStorage.getItem('token') : false;
+    this.checkAuthentication()
+    return this.authStatusSubject.getValue();
   }
 }

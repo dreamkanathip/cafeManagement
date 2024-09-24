@@ -11,10 +11,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isAuthenticated()) {
-      return true;  // อนุญาตให้ไปต่อได้
+      return true; 
     } else {
-      this.router.navigate(['/login']); // ถ้าไม่ได้ล็อกอิน เปลี่ยนไปหน้าเข้าสู่ระบบ
-      return false; // ป้องกันการเข้าถึงเส้นทาง
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 }

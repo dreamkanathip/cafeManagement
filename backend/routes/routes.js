@@ -14,7 +14,9 @@ const upload = multer({ storage: storage });
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.get("/user", authenticateToken, authController.getUser);
+router.get("/check-auth", authenticateToken, authController.getUser);
 router.post("/logout", authController.logout);
+
 
 // Menu
 router.post("/addMenu",  authenticateToken, upload.single("image"), MenuController.addMenu);

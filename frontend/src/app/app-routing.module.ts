@@ -14,7 +14,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

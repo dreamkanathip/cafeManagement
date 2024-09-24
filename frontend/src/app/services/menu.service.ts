@@ -21,16 +21,16 @@ export class MenuService implements OnInit{
   }
 
   getSomeMenu(id: string) : Observable<menuType> {
-    return this.http.get<menuType>(`${this.apiUrl}/menu/${id}`);
+    return this.http.get<menuType>(`${this.apiUrl}/menu/${id}`,{ withCredentials: true });
   }
   deleteMenuById(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/menu/${id}`)
+    return this.http.delete<any>(`${this.apiUrl}/menu/${id}`,{ withCredentials: true })
   }
   addMenu(menu: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/addMenu`, menu, { withCredentials: true });
   }
   updateMenu(menu:any, id:string): Observable<any> {
     console.log("service", menu)
-    return this.http.put(`${this.apiUrl}/menuUpdate/${id}`, menu)
+    return this.http.put(`${this.apiUrl}/menuUpdate/${id}`, menu,{ withCredentials: true })
   }
 }

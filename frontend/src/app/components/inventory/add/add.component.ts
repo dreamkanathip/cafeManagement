@@ -29,7 +29,7 @@ export class AddMenuComponent implements OnInit{
 
   constructor(private menuService: MenuService, private categoryService: CategoryService) {
     this.getCategoriesFromApi()
-    this.categoryService.menuReloadCategories(() => this.getCategoriesFromApi())
+    this.categoryService.menuReloadCategoriesAdd(() => this.getCategoriesFromApi())
   }
 
   get menuName() {
@@ -58,7 +58,7 @@ export class AddMenuComponent implements OnInit{
   getCategoriesFromApi() {
     this.categoryService.getAllCategory().subscribe(result => {
       this.category = result;
-      console.log("called")
+      console.log("called from add")
     })
   }
 

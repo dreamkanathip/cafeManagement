@@ -67,4 +67,20 @@ const logout = (req, res) => {
   res.send({ message: "Logout successful" });
 };
 
-module.exports = { register, login, getUser, logout };
+const getToken = async (req, res) => {
+
+  const token = req.cookies.jwt; // Get the token from the HTTP-only cookie
+  if (token) {
+    // Validate the token and respond accordingly
+    jwt.verify(token, secretKey, (err, user) => {
+      if (err) {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
+      res.status(200).json({ message: 'Authenticated', user });
+    });
+  } else {
+    res.status(401).json({ message: 'Not authenticated' });
+  }
+};
+
+module.exports = { register, login, getUser, logout, getToken };
