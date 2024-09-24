@@ -17,11 +17,9 @@ export class MenuComponent implements OnInit {
   selectedItem!: string;
   showAlert: boolean = false; // Variable to control the alert visibility
   menuItems!: menuType[]; // Specify type for menuItems
-  category!: any;
   message: string = ''; // Declare message property
 
   constructor(private menuService: MenuService, private http: HttpClient) {
-    // Inject HttpClient
     this.loadMenuItems();
   }
 
@@ -31,8 +29,8 @@ export class MenuComponent implements OnInit {
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33 ',
+      cancelButtonColor: '##3085d6',
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -53,16 +51,11 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  updateMenuById(id: string) {
-    this.setUpdateValue(id);
-  }
-
   setUpdateValue(id: string) {
     this.editMenuComponent.getItem(id);
   }
 
   loadMenuItems() {
-    console.log('loaded');
     this.menuService.getAllMenu().subscribe((result) => {
       this.menuItems = result;
     });
@@ -77,28 +70,5 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Fetch user details for personalized message
-    this.http
-      .get<any>('http://localhost:5000/api/user', { withCredentials: true })
-      .subscribe(
-        (res) => {
-          const title =
-            res.gender === 'male'
-              ? 'Mr.'
-              : res.gender === 'female'
-              ? 'Ms.'
-              : '';
-          const firstLetterOfLastName = res.lastName
-            ? res.lastName.charAt(0)
-            : '';
-          this.message = `${title} ${firstLetterOfLastName}. ${res.firstName}!`;
-          Emitters.authEmitter.emit(true); // Emit authentication status
-        },
-        (err) => {
-          console.error('Error fetching user data:', err);
-          this.message = 'An error occurred. Please try again later.';
-          Emitters.authEmitter.emit(false); // Emit error in case of failure
-        }
-      );
   }
 }

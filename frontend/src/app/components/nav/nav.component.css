@@ -77,26 +77,3 @@
   font-size: 17px;
   margin: 0 60px; /* Horizontal spacing between nav items */
 }
-
-.nav-item.dropdown:hover .dropdown-menu {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-}
-
-/* Hide the dropdown initially */
-.dropdown-menu {
-  display: block;
-  opacity: 0;
-  transform: translateY(-10px);
-  visibility: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-.dropdown-item {
-  transition: 0.2s;
-}
-.dropdown-item:hover {
-  background: #009970;
-  color: white;
-}

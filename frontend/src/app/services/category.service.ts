@@ -10,6 +10,8 @@ export class CategoryService implements OnInit{
 
   apiUrl = "http://localhost:5000/api"
 
+  private loadCategory: () => void = () => {};
+
   constructor(
     private http: HttpClient
   ) { }
@@ -23,7 +25,6 @@ export class CategoryService implements OnInit{
   getSomeCategory(id: string) : Observable<categoryType> {
     return this.http.get<categoryType>(`${this.apiUrl}/category/${id}`);
   }
-
   deleteCategoryById(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/category/${id}`)
   }
@@ -36,4 +37,15 @@ export class CategoryService implements OnInit{
     return this.http.patch(`${this.apiUrl}/categoryUpdate/${id}`, category)
   }
 
+  menuReloadCategories(func: () => void) {
+    this.loadCategory = func;
+    console.log("func registered")
+  }
+
+  executeMenuReloadCategories() {
+    if (this.loadCategory) {
+      this.loadCategory();
+      console.log("executed")
+    }
+  }
 }

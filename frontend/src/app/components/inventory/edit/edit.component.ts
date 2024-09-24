@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { MenuService } from '../../../services/menu.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-edit',
@@ -28,12 +29,11 @@ export class EditMenuComponent implements OnInit {
     image: new FormControl('', [Validators.required])
   })
 
-  constructor(private menuService: MenuService) {
-    this.menuService.getAllCategory().subscribe(result => {
-      this.category = result;
-    })
+  constructor(private menuService: MenuService, private categoryService: CategoryService) {
+    this.getCategoriesFromApi()
+    this.categoryService.menuReloadCategories(() => this.getCategoriesFromApi())
+    
   }
-
   get menuName() {
     return this.menuForm.get('name')
   }
@@ -51,7 +51,11 @@ export class EditMenuComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-
+  getCategoriesFromApi() {
+    this.categoryService.getAllCategory().subscribe(result => {
+      this.category = result;
+    })
+  }
   selectCategory(i: number) {
     this.selectedCategory = this.category[i].categoryName
     this.menuForm.get('category')?.setValue(this.selectedCategory);
@@ -65,6 +69,7 @@ export class EditMenuComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file; // Store the file
+      this.menuForm.get('image')?.setValue(file)
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;
