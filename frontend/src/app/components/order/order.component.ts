@@ -3,8 +3,6 @@ import { OrderService } from '../../services/order.service';
 import { menuType } from '../../interfaces/menu.model';
 import { categoryType } from '../../interfaces/category.model';
 import { CategoryService } from '../../services/category.service';
-import { HttpClient } from '@angular/common/http';
-import { Emitters } from '../../emitters/emitter'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-order',
@@ -21,7 +19,6 @@ export class OrderComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private categoryService: CategoryService,
-    private http: HttpClient // Inject HttpClient here
   ) {
     // Fetching cart from service
     this.cart = this.orderService.getCart();

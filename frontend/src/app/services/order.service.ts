@@ -42,7 +42,7 @@ export class OrderService {
   }
 
   getAllMenu(): Observable<menuType[]> {
-    return this.http.get<menuType[]>(`${this.apiUrl}/allMenu`);
+    return this.http.get<menuType[]>(`${this.apiUrl}/allMenu`, { withCredentials: true });
   }
   getCounter(){
     return this.cartCounter
