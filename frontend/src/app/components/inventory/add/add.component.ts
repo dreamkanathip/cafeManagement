@@ -62,7 +62,8 @@ export class AddMenuComponent implements OnInit{
     })
   }
 
-  onImageChange(event: any) {
+  onImageAdd(event: any) {
+    console.log("add image")
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file; // Store the file

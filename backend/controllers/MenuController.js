@@ -10,14 +10,14 @@ const addMenu = async(req, res) => {
     if (!allowedMimeTypes.includes(req.file.mimetype)) {
       return res.status(400).json({ error: "Invalid image type. Only PNG and JPG are allowed." });
     }
-    const userId = req.user._id;
-    console.log(userId)
+    // const userId = req.user._id;
+    // console.log(userId)
     const payload = new Menu({
       name,
       price,
       description,
       category,
-      createdBy: userId
+      // createdBy: userId
     })
     if (req.file) {
       const imageBase64 = req.file.buffer.toString('base64');
