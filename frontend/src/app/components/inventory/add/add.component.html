@@ -17,7 +17,7 @@
               <label class="btn btn-primary upload-btn" for="menu-image">
                 Upload Image
               </label>
-              <input type="file" class="form-control-file" id="menu-image" (change)="onImageChange($event)" appImage/>
+              <input type="file" class="form-control-file" id="menu-image" (change)="onImageAdd($event)" appImage/>
               <div class="error" *ngIf="menuImage?.invalid && submitted">
                   <span>*Image is required.</span>
               </div>

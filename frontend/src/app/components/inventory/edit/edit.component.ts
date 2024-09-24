@@ -16,7 +16,7 @@ export class EditMenuComponent implements OnInit {
   updateId!: string;
   category!: any
   selectedCategory: string = "Select Category"
-  imagePreview: string | ArrayBuffer | null = "/assets/placeholder.jpg";
+  imagePreview!: string | ArrayBuffer | null;
   selectedFile: File | null = null; // Store the file here
   id!: string
   submitted: boolean = false;
@@ -66,10 +66,10 @@ export class EditMenuComponent implements OnInit {
   }
 
   onImageChange(event: any) {
+    console.log("edit image")
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file; // Store the file
-      this.menuForm.get('image')?.setValue(file)
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;

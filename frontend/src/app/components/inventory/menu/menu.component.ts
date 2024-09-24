@@ -50,7 +50,10 @@ export class MenuComponent implements OnInit {
       }
     });
   }
-
+  updateMenuById(id: string) {
+    this.setUpdateValue(id);
+  }
+  
   setUpdateValue(id: string) {
     this.editMenuComponent.getItem(id);
   }
